@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "css": "postcss assets/styles/main.css -o assets/styles/main.min.css --verbose",
+    "css": "postcss assets/styles/main.css -o assets/styles/main.min.css --verbose --env 'production'",
+
     "server-reload": "browser-sync start --config './browser-sync-config.js'",
     "develop": "concurrently 'npm:css -- --watch' 'npm:server-reload'",
-    "build": "npm run css -- --env 'production'",
+    "build:css": "npm run css -- --env 'production'",
     "format": "npx prettier ./**/*.html",
     "dev": "vite",
-    "buildvite": "vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "prepreview": "npm run build",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore src"
