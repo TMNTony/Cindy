@@ -60,7 +60,7 @@
                   </div>
 
                   <div
-                    class="mt-6 flex flex-col items-center justify-center text-center md:mt-10 md:flex-row md:text-left lg:mt-0"
+                    class="flex flex-col items-center justify-center text-center md:flex-row md:text-left"
                   >
                     <div>
                       <img
