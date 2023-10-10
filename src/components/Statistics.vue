@@ -1,7 +1,7 @@
 <template>
   <div
             class="bg-cover bg-top bg-no-repeat pb-16 md:py-16 lg:py-24"
-            :style="{ backgroundImage: 'url(' + imageUrl('bg-hero.jpg') + ')' }"
+            :style="{ backgroundImage: 'url(' + imageUrl('experience-figure.png') + ')' }"
             id="statistics"
           >
             <div class="container">
