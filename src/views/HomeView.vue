@@ -7,7 +7,6 @@
       <services-component />
       <portfolio-component />
       <clients-component />
-      <experience-component />
       <statistics-component />
       <hobbies-component />
       <contact-component />
@@ -26,7 +25,7 @@ import PortfolioComponent from "../components/Portfolio.vue";
 import ClientsComponent from "../components/Clients.vue";
 import ExperienceComponent from "../components/Experience.vue";
 import StatisticsComponent from "../components/Statistics.vue";
-import HobbiesComponent from "../components/Hobbies.vue";
+import HobbiesComponent from "../components/Blog.vue";
 import ContactComponent from "../components/Contact.vue";
 
 export default {

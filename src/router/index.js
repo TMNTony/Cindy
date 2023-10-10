@@ -3,6 +3,7 @@ import { useStore } from 'vuex'
 
 // Import components
 import HomeView from '../views/HomeView.vue';
+import Bio from '../views/Bio.vue'
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+  },
+  {
+    path: '/Bio',
+    name: 'bio',
+    component: Bio,
   },
 ];
 

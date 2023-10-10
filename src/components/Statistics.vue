@@ -16,7 +16,7 @@
                   >
                     <div>
                       <img
-                        src="src/assets/img/icon-project.svg"
+                        src="/src/assets/img/icon-project.svg"
                         class="mx-auto h-12 w-auto md:h-20"
                         alt="icon project"
                       />
@@ -25,12 +25,12 @@
                       <h1
                         class="font-body text-2xl font-bold text-primary md:text-4xl"
                       >
-                        12
+                        ?
                       </h1>
                       <h4
                         class="text-grey-dark font-header text-base font-medium leading-loose md:text-xl"
                       >
-                        Finished Projects
+                        Honor Band Students
                       </h4>
                     </div>
                   </div>
@@ -40,7 +40,7 @@
                   >
                     <div>
                       <img
-                        src="src/assets/img/icon-award.svg"
+                        src="/src/assets/img/icon-award.svg"
                         class="mx-auto h-12 w-auto md:h-20"
                         alt="icon award"
                       />
@@ -49,12 +49,12 @@
                       <h1
                         class="font-body text-2xl font-bold text-primary md:text-4xl"
                       >
-                        3
+                        ?
                       </h1>
                       <h4
                         class="text-grey-dark font-header text-base font-medium leading-loose md:text-xl"
                       >
-                        Awards Won
+                        All-State Students
                       </h4>
                     </div>
                   </div>
@@ -64,7 +64,7 @@
                   >
                     <div>
                       <img
-                        src="src/assets/img/icon-happy.svg"
+                        src="/src/assets/img/icon-happy.svg"
                         class="mx-auto h-12 w-auto md:h-20"
                         alt="icon happy clients"
                       />
@@ -73,36 +73,12 @@
                       <h1
                         class="font-body text-2xl font-bold text-primary md:text-4xl"
                       >
-                        8
+                        ?
                       </h1>
                       <h4
                         class="text-grey-dark font-header text-base font-medium leading-loose md:text-xl"
                       >
-                        Happy Clients
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div
-                    class="mt-6 flex flex-col items-center justify-center text-center md:mt-10 md:flex-row md:text-left lg:mt-0"
-                  >
-                    <div>
-                      <img
-                        src="src/assets/img/icon-puzzle.svg"
-                        class="mx-auto h-12 w-auto md:h-20"
-                        alt="icon puzzle"
-                      />
-                    </div>
-                    <div class="pt-5 md:pl-5 md:pt-0">
-                      <h1
-                        class="font-body text-2xl font-bold text-primary md:text-4xl"
-                      >
-                        99
-                      </h1>
-                      <h4
-                        class="text-grey-dark font-header text-base font-medium leading-loose md:text-xl"
-                      >
-                        Bugs Fixed
+                       Solo and Ensemble Awards
                       </h4>
                     </div>
                   </div>

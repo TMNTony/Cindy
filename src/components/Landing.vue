@@ -11,9 +11,9 @@
       class="container relative z-20 pb-12 pt-20 sm:pb-48 sm:pt-56 lg:pb-48 lg:pt-64"
     >
       <div class="flex flex-col items-center justify-center lg:flex-row">
-        <div class="rounded-full border-8 border-primary shadow-xl">
+        <div class="rounded-full  border-primary shadow-xl">
           <img
-            src="src/assets/img/cindy.jpg"
+            src="/src/assets/img/cindy.jpg"
             class="h-48 rounded-full sm:h-56"
             alt="Cindy"
           />
@@ -22,7 +22,7 @@
           <h1
             class="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl"
           >
-            Hello I'm Cindy Chambless!
+            Hello I'm Cynthia Chambless!
           </h1>
           <div
             class="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start"
