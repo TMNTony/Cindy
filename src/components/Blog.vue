@@ -17,7 +17,7 @@
         <div v-if="posts.length === 0" >
           <div  class="shadow">
             <div
-                style="backgroundImage: url(/src/assets/img/post-01.png)"
+                :style="{ backgroundImage: 'url(' + imageUrl('post-01.png') + ')' }"
                 class="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
             >
             <span

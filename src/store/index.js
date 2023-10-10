@@ -6,27 +6,27 @@ export function createStore() {
             gallery: [
                 {
                     id: 1,
-                    pictureURL: "hso.jpeg",
+                    pictureURL: "hso.jpg",
                 },
                 {
                     id: 2,
-                    pictureURL: "tso.jpeg",
+                    pictureURL: "tso.jpg",
                 },
                 {
                     id: 3,
-                    pictureURL: "TSO-horns.jpeg",
+                    pictureURL: "TSO-horns.jpg",
                 },
                 {
                     id: 4,
-                    pictureURL: "sw.jpeg",
+                    pictureURL: "sw.jpg",
                 },
                 {
                     id: 5,
-                    pictureURL: "skip.jpeg",
+                    pictureURL: "skip.jpg",
                 },
                 {
                     id: 6,
-                    pictureURL: "marty.jpeg",
+                    pictureURL: "marty.jpg",
                 },
             ],
             schools: [
@@ -60,7 +60,7 @@ export function createStore() {
                 },
                 {
                     name: "Simmons Middle School",
-                    pictureURL: "simmons.jfif"
+                    pictureURL: "simmons.png"
                 },
                 {
                     name: "Thompson High School",
