@@ -1,7 +1,7 @@
 <template>
   <div
             class="bg-cover bg-top bg-no-repeat pb-16 md:py-16 lg:py-24"
-            style="background-image: url(src/assets/img/experience-figure.png)"
+            :style="{ backgroundImage: 'url(' + imageUrl('bg-hero.jpg') + ')' }"
             id="statistics"
           >
             <div class="container">
@@ -90,7 +90,11 @@
 
 <script>
 export default {
-
+  methods: {
+    imageUrl(imagePath) {
+      return new URL(`/src/assets/img/${imagePath}`, import.meta.url)
+    },
+  }
 }
 </script>
 
