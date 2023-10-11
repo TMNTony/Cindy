@@ -24,40 +24,6 @@
           >
             Hello I'm Cynthia Chambless!
           </h1>
-          <div
-              class="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start"
-          >
-            <div
-                class="flex items-center justify-center pl-0 sm:justify-start md:pl-1"
-            >
-              <p class="font-body text-lg uppercase text-white">
-                Let's connect
-              </p>
-              <div class="hidden sm:block">
-                <i class="bx bx-chevron-right text-3xl text-yellow"></i>
-              </div>
-            </div>
-            <div
-                class="flex items-center justify-center pl-2 pt-5 sm:justify-start sm:pt-0"
-            >
-              <a href="/">
-                <i
-                    class="bx bxl-facebook-square text-2xl text-white hover:text-yellow"
-                ></i>
-              </a>
-
-              <a href="/" class="pl-4">
-                <i
-                    class="bx bxl-linkedin text-2xl text-white hover:text-yellow"
-                ></i>
-              </a>
-              <a href="/" class="pl-4">
-                <i
-                    class="bx bxl-instagram text-2xl text-white hover:text-yellow"
-                ></i>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

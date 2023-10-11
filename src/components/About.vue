@@ -43,37 +43,6 @@
           <a class="pt-6 text-primary" href="https://www.hso.org">Huntsville Symphony Orchestra</a>
         </div>
 
-        <div
-            class="flex flex-col justify-center pt-6 sm:flex-row lg:justify-start"
-        >
-          <div class="flex items-center justify-center sm:justify-start">
-            <p class="font-body text-lg font-semibold uppercase text-grey-20">
-              Connect with me
-            </p>
-            <div class="hidden sm:block">
-              <i class="bx bx-chevron-right text-2xl text-primary"></i>
-            </div>
-          </div>
-          <div
-              class="flex items-center justify-center pl-2 pt-5 sm:justify-start sm:pt-0"
-          >
-            <a href="/">
-              <i
-                  class="bx bxl-facebook-square text-2xl text-primary hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
-              <i
-                  class="bx bxl-linkedin text-2xl text-primary hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
-              <i
-                  class="bx bxl-instagram text-2xl text-primary hover:text-yellow"
-              ></i>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </div>

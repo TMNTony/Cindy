@@ -46,40 +46,8 @@
       </button>
     </form>
     <div class="flex flex-col pt-16 lg:flex-row">
-      <div
-          class="w-full border-b-2 border-l-2 border-r-2 border-t-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3"
-      >
-        <div class="flex items-center">
-          <i class="bx bx-phone text-2xl text-grey-40"></i>
-          <p
-              class="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg"
-          >
-            My Phone
-          </p>
-        </div>
-        <p
-            class="pt-2 text-left font-body font-bold text-primary lg:text-lg"
-        >
-          (334) 224-2039
-        </p>
-      </div>
-      <div
-          class="w-full border-b-2 border-l-2 border-r-2 border-t-0 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-0 lg:border-t-2"
-      >
-        <div class="flex items-center">
-          <i class="bx bx-envelope text-2xl text-grey-40"></i>
-          <p
-              class="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg"
-          >
-            My Email
-          </p>
-        </div>
-        <p
-            class="pt-2 text-left font-body font-bold text-primary lg:text-lg"
-        >
-          cynthia.ellen.simpson@gmail.com
-        </p>
-      </div>
+
+
     </div>
   </div>
 </template>
