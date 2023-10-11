@@ -4,7 +4,7 @@
       :style="{ backgroundImage: 'url(' + imageUrl('bg-hero.jpg') + ')' }"
   >
     <div
-        class="absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to bg-cover bg-center bg-no-repeat"
+        class="custom-bg"
     ></div>
 
     <div
@@ -40,4 +40,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.custom-bg {
+  background-color: rgba(85, 64, 174, 0.8);
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+</style>
