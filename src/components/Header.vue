@@ -113,9 +113,9 @@
 
 
           <li class="py-2">
-            <router-link :to="{name: 'bio'}"
+            <router-link :to="{name: 'blog'}"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-            >Bio
+            >Blog
             </router-link>
           </li>
 
