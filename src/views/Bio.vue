@@ -83,6 +83,9 @@
 export default {
   name: 'bio',
   data() {
+    return {
+      mobileMenu: false,
+    }
   },
   components: {},
 }
