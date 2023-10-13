@@ -1,44 +1,5 @@
 <template>
   <div :class="{ 'max-h-screen overflow-hidden': mobileMenu }" class="relative">
-    <div class="absolute top-0 z-50 w-full py-3 sm:py-5 bg-primary">
-      <div class="container flex items-center justify-between">
-        <div></div>
-        <div v-if="!isSmallScreen" class="lg:block">
-          <ul class="flex items-center">
-            <li class="group pl-6">
-              <router-link :to="{ name: 'home' }"
-                           class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Home
-              </router-link>
-              <span
-                  class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-              ></span>
-            </li>
-
-          </ul>
-        </div>
-        <div v-if="isSmallScreen" class="block lg">
-          <button @click="toggleMobileMenu()">
-            <i class="bx bx-menu text-4xl text-white"></i>
-          </button>
-        </div>
-      </div>
-      <div
-          class="lg pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity"
-      >
-        <div
-            class="absolute right-0 min-h-screen w-2/3 bg-primary px-8 py-4 shadow md:w-1/3"
-        >
-          <button
-              class="absolute right-0 top-0 mr-4 mt-4"
-              @click="mobileMenu = false"
-          >
-            <img src="/src/assets/img/icon-close.svg" class="h-10 w-auto" alt=""/>
-          </button>
-
-        </div>
-      </div>
-    </div>
     <div id="main" class="relative">
       <div class="bg-grey-50" id="about">
         <div
@@ -110,34 +71,19 @@
               <li>University of Montevallo</li>
               <li>Oglethorpe University</li>
             </ul>
-
           </div>
         </div>
       </div>
-      <footer-component/>
     </div>
   </div>
 </template>
 <script>
-import FooterComponent from "@/components/Footer.vue";
+
 
 export default {
   name: 'bio',
-  data(){
-    return {
-      mobileMenu: false,
-    }
+  data() {
   },
-  components: {
-    FooterComponent,
-  },
-  computed: {
-    isSmallScreen() {
-      // Check if the viewport width is less than your desired breakpoint (e.g., 768px)
-      return window.innerWidth < 768;
-    },
-  },
-
-
+  components: {},
 }
 </script>

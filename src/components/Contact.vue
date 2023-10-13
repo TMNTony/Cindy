@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-16 md:py-20" id="contact">
+  <div class="container py-16 md:py-20" >
     <h2
         class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl"
     >

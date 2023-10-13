@@ -23,7 +23,6 @@
             <span
                 class="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"
             ></span>
-              >
             </div>
             <div class="bg-white px-5 py-6 xl:py-8">
             <span class="block font-body text-lg font-semibold text-black"

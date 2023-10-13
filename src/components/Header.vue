@@ -1,89 +1,69 @@
 <template>
-  <div class="absolute top-0 z-50 w-full py-3 sm:py-5 ">
+  <div :class="background">
     <div class="container flex items-center justify-between">
       <div></div>
       <div v-if="!isSmallScreen" class="lg:block">
         <ul class="flex items-center">
           <li class="group pl-6">
+            <router-link :to="{name: 'home'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Home
+            </router-link>
             <span
-              @click="triggerNavItem('about')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >About</span
-            >
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+            ></span>
+          </li>
+          <li class="group pl-6">
+            <router-link :to="{name: 'bio'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Bio
+            </router-link>
             <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+            ></span>
+          </li>
+
+          <li class="group pl-6">
+            <router-link :to="{name: 'media'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Media
+            </router-link>
+
+            <span
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+            ></span>
+          </li>
+
+          <li class="group pl-6">
+            <router-link :to="{name: 'studio'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Studio
+            </router-link>
+
+            <span
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+            ></span>
+          </li>
+
+          <li class="group pl-6">
+            <router-link :to="{name: 'blog'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Blog
+            </router-link>
+            <span
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
             ></span>
           </li>
 
           <li class="group pl-6">
             <span
-              @click="triggerNavItem('services')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Services</span
+                @click="triggerNavItem('contact')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Contact</span
             >
 
             <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-            ></span>
-          </li>
-
-          <li class="group pl-6">
-            <span
-              @click="triggerNavItem('portfolio')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Gallery</span
-            >
-
-            <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-            ></span>
-          </li>
-
-          <li class="group pl-6">
-            <span
-              @click="triggerNavItem('clients')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Schools</span
-            >
-
-            <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-            ></span>
-          </li>
-
-          <li class="group pl-6">
-            <span
-              @click="triggerNavItem('statistics')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Awards</span
-            >
-
-            <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-            ></span>
-          </li>
-
-          <li class="group pl-6">
-            <span
-              @click="triggerNavItem('blog')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Blog</span
-            >
-
-            <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
-            ></span>
-          </li>
-
-          <li class="group pl-6">
-            <span
-              @click="triggerNavItem('contact')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Contact</span
-            >
-
-            <span
-              class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
             ></span>
           </li>
         </ul>
@@ -95,74 +75,56 @@
       </div>
     </div>
     <div
-      v-if="mobileMenu"
-      class="lg pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity"
-      :class="{ 'pointer-events-auto opacity-100': mobileMenu }"
+        v-if="mobileMenu"
+        class="lg pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity"
+        :class="{ 'pointer-events-auto opacity-100': mobileMenu }"
     >
       <div
-        class="absolute right-0 min-h-screen w-2/3 bg-primary px-8 py-4 shadow md:w-1/3"
+          class="absolute right-0 min-h-screen w-2/3 bg-primary px-8 py-4 shadow md:w-1/3"
       >
         <button
-          class="absolute right-0 top-0 mr-4 mt-4"
-          @click="mobileMenu = false"
+            class="absolute right-0 top-0 mr-4 mt-4"
+            @click="mobileMenu = false"
         >
-          <img src="/src/assets/img/icon-close.svg" class="h-10 w-auto" alt="" />
+          <img src="/src/assets/img/icon-close.svg" class="h-10 w-auto" alt=""/>
         </button>
 
         <ul class="mt-8 flex flex-col">
           <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('about')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >About</span
+            <router-link :to="{name: 'bio'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Bio
+            </router-link>
+          </li>
+
+          <li class="py-2">
+            <router-link :to="{name: 'media'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Media
+            </router-link>
+          </li>
+
+          <li class="py-2">
+            <router-link :to="{name: 'studio'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Studio
+            </router-link>
             >
+          </li>
+
+
+          <li class="py-2">
+            <router-link :to="{name: 'bio'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Bio
+            </router-link>
           </li>
 
           <li class="py-2">
             <span
-              @click="triggerMobileNavItem('services')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Services</span
-            >
-          </li>
-
-          <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('portfolio')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Gallery</span
-            >
-          </li>
-
-          <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('clients')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Schools</span
-            >
-          </li>
-
-          <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('statistics')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Awards</span
-            >
-          </li>
-
-          <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('blog')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Blog</span
-            >
-          </li>
-
-          <li class="py-2">
-            <span
-              @click="triggerMobileNavItem('contact')"
-              class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
-              >Contact</span
+                @click="triggerMobileNavItem('contact')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Contact</span
             >
           </li>
         </ul>
@@ -172,9 +134,11 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { currentSection } from "../../SharedState.js";
+import {ref} from 'vue';
+import {currentSection} from "../../SharedState.js";
+
 export default {
+
   data() {
     return {
       mobileMenu: false,
@@ -189,9 +153,16 @@ export default {
 
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({behavior: "smooth"});
+      } else {
+        this.$router.push({name: 'home'}).then(() => {
+          // Wait for the route change to complete, then scroll to "Contact"
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({behavior: "smooth"});
+          }
+        })
       }
-      console.log(currentSection.value);
     },
     triggerMobileNavItem(id) {
       this.mobileMenu = false;
@@ -200,14 +171,26 @@ export default {
     toggleMobileMenu() {
       this.mobileMenu = !this.mobileMenu;
     },
-  },
+  }
+  ,
   computed: {
     isSmallScreen() {
       // Check if the viewport width is less than your desired breakpoint (e.g., 768px)
       return window.innerWidth < 768;
-    },
-  },
-};
+    }
+    ,
+    background() {
+
+      if (this.$route.path !== "/") {
+        return "absolute top-0 z-50 w-full py-3 sm:py-5 bg-primary"
+      } else {
+        return "absolute top-0 z-50 w-full py-3 sm:py-5"
+      }
+    }
+  }
+  ,
+}
+;
 </script>
 
 <style></style>
