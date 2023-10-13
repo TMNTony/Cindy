@@ -109,7 +109,6 @@
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Studio
             </router-link>
-            >
           </li>
 
 
