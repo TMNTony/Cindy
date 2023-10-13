@@ -91,6 +91,13 @@
 
         <ul class="mt-8 flex flex-col">
           <li class="py-2">
+            <router-link :to="{name: 'home'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Home
+            </router-link>
+          </li>
+
+          <li class="py-2">
             <router-link :to="{name: 'bio'}"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Bio
