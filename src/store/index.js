@@ -7,28 +7,50 @@ export function createStore() {
                 {
                     id: 1,
                     pictureURL: "hso.jpg",
+                    caption: "Huntsville Symphony Orchestra horn section\n" +
+                        "After a performance of Schumann’s Konzertstück, January 2019"
                 },
                 {
                     id: 2,
                     pictureURL: "tso.jpg",
+                    caption: "Tuscaloosa Symphony Orchestra horn section \n" +
+                        "Cynthia Chambless, Horn 3"
                 },
                 {
                     id: 3,
                     pictureURL: "TSO-horns.jpg",
+                    caption: "Tuscaloosa Symphony Orchestra horns with the University of Alabama Huxford Symphony Orchestra performing Schumann’s Konzertstück Fall 2015"
                 },
                 {
                     id: 4,
                     pictureURL: "sw.jpg",
+                    caption: "Huntsville Symphony Orchestra\n" +
+                        "John Williams concert "
                 },
                 {
                     id: 5,
                     pictureURL: "skip.jpg",
+                    caption: "Cynthia Chambless and Charles ‘Skip’ Snead"
                 },
                 {
                     id: 6,
                     pictureURL: "marty.jpg",
+                    caption: "Cynthia Chambless and Martin ‘Marty’ Hackleman "
                 },
             ],
+            videos: [
+                {
+                    id: 1,
+                    videoURL: 'https://www.youtube.com/embed/jhkytzoQpW4?si=TcDsrE2FUf5MVp3p',
+                    caption: ""
+                },
+                {
+                    id: 2,
+                    videoURL: 'https://www.youtube.com/embed/3CyVaBWBFVA?si=JQcWX1-x8xqno2Ps',
+                    caption: ""
+                }
+            ],
+
             schools: [
                 {
                     name: "Berry Middle School",
@@ -109,6 +131,9 @@ export function createStore() {
         getters: {
             getPhotos(state) {
                 return state.gallery;
+            },
+            getVideos(state) {
+                return state.videos;
             },
             getSchools(state) {
                 return state.schools;
