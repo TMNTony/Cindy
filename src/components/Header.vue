@@ -54,6 +54,15 @@
                 class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
             ></span>
           </li>
+          <li class="group pl-6">
+            <router-link :to="{name: 'bells'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Bell's Palsy
+            </router-link>
+            <span
+                class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"
+            ></span>
+          </li>
 
           <li class="group pl-6">
             <span
@@ -123,6 +132,13 @@
             <router-link :to="{name: 'blog'}"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Blog
+            </router-link>
+          </li>
+
+          <li class="py-2">
+            <router-link :to="{name: 'bells'}"
+                         class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
+            >Bell's Palsy
             </router-link>
           </li>
 
