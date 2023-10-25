@@ -1,10 +1,12 @@
 <template>
-  <div id="app" class="min-h-screen grid">
-    <AppHeader></AppHeader>
-    <router-view class="flex-1" />
-    <AppFooter></AppFooter>
+  <div id="app" class="min-h-screen grid grid-rows-[auto,1fr,auto]">
+    <AppHeader class="row-span-1"></AppHeader>
+    <router-view class="row-span-2" />
+    <AppFooter class="row-span-3"></AppFooter>
   </div>
 </template>
+
+
 
 <script>
 import AppHeader from "../src/components/Header.vue";
