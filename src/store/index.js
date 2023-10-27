@@ -93,6 +93,10 @@ export function createStore() {
                     pictureURL: "tms.png"
                 },
                 {
+                    name: "Spain Park High School",
+                    pictureURL: "sp.png"
+                },
+                {
                     name: "Vestavia Hills School",
                     pictureURL: "vh.png"
                 }
