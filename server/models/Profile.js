@@ -7,6 +7,6 @@ const profileSchema = mongoose.Schema({
     philosophy: String
 })
 
-const profileModel = mongoose.models("profile", profileSchema)
+const profileModel = mongoose.model("profile", profileSchema)
 
 module.exports = profileModel
