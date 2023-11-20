@@ -1,4 +1,12 @@
 import {createStore as _createStore} from 'vuex';
+import axios from "axios";
+import BlogService from "@/services/BlogService";
+import ProfileService
+    from "@/services/ProfileService";
+import PictureService
+    from "@/services/PictureService";
+import VideoService
+    from "@/services/VideoService";
 
 export function createStore() {
     return _createStore({
@@ -116,7 +124,7 @@ export function createStore() {
                     description: ""
                 },
                 {
-                    icon:  "fa fa-users",
+                    icon: "fa fa-users",
                     service: "Master Classes",
                     description: ""
                 }
@@ -151,6 +159,9 @@ export function createStore() {
             getExperiences(state) {
                 return state.experience;
             }
+        },
+        actions: {
+
         }
     });
 }

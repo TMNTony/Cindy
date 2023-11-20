@@ -8,6 +8,7 @@ import BellsPalsy from "../views/BellsPalsy.vue";
 import Media from "../views/Media.vue";
 import Blog from "../views/Blog.vue";
 import Studio from "../views/Studio.vue";
+import AddPost from "../views/AddPost.vue"
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -43,6 +44,11 @@ const routes = [
     path: '/Studio',
     name: 'studio',
     component: Studio,
+  },
+  {
+    path: '/AddPost',
+    name: 'addPost',
+    component: AddPost,
   },
 ];
 

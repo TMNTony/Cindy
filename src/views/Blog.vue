@@ -2,20 +2,20 @@
   <div class="bg-grey-50" id="blog">
     <div class="container py-16 md:py-20">
       <h2
-        class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl"
+          class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl"
       >
         My Blog!
       </h2>
       <h4
-        class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl"
+          class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl"
       >
         Check out my latest posts!
       </h4>
       <div
-        class="mx-auto grid w-full grid-cols-1 gap-6 pt-12 sm:w-3/4 lg:w-full lg:grid-cols-3 xl:gap-10"
+          class="mx-auto grid w-full grid-cols-1 gap-6 pt-12 sm:w-3/4 lg:w-full lg:grid-cols-3 xl:gap-10"
       >
-        <div v-if="posts.length === 0" >
-          <div  class="shadow">
+        <div v-if="posts.length === 0">
+          <div class="shadow">
             <div
                 :style="{ backgroundImage: 'url(' + imageUrl('post-01.png') + ')' }"
                 class="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
@@ -50,10 +50,10 @@
             </div>
             <div class="bg-white px-5 py-6 xl:py-8">
             <span class="block font-body text-lg font-semibold text-black"
-            >{{post.title}}</span
+            >{{ post.title }}</span
             >
               <span class="block pt-2 font-body text-grey-20"
-              >{{post.description}}</span
+              >{{ post.description }}</span
               >
             </div>
           </a>
@@ -64,6 +64,9 @@
 </template>
 
 <script>
+import BlogService from "@/services/BlogService";
+
+
 export default {
   data() {
     return {
@@ -72,7 +75,13 @@ export default {
   },
   methods: {
     getPosts() {
-      this.posts = this.$store.getters.getPosts;
+      BlogService.get_blogs()
+          .then(response => {
+            this.posts = response.data
+          })
+          .catch(err => {
+            console.log(err)
+          })
     },
     imageUrl(imagePath) {
       return new URL(`/src/assets/img/${imagePath}`, import.meta.url)
@@ -80,6 +89,7 @@ export default {
   },
   created() {
     this.getPosts();
+    console.log(this.posts)
   },
 };
 </script>
