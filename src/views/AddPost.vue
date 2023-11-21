@@ -33,7 +33,7 @@
 </template>
 <script>
 import BlogService from "../services/BlogService";
-import axios from "axios";
+import { DateTime } from "luxon"
 
 export default {
   name: "addPost",
@@ -42,6 +42,7 @@ export default {
       post: {
         title: "",
         description: "",
+        date: DateTime.local().toFormat("MM/dd/yyyy"),
         content: "",
       },
     };

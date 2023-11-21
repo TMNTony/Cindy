@@ -16,10 +16,7 @@
       >
         <div v-if="posts.length === 0">
           <div class="shadow">
-            <div
-                :style="{ backgroundImage: 'url(' + imageUrl('post-01.png') + ')' }"
-                class="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
-            >
+            <div class="relative">
             <span
                 class="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"
             ></span>
@@ -35,18 +32,13 @@
           </div>
         </div>
         <div v-for="post in posts" :key="post.title">
-          <a href="/post" class="shadow">
-            <div
-                :style="{ backgroundImage: 'url(' + imageUrl(post.image) + ')' }"
-                class="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
-            >
+          <router-link :to="{name: 'blogPost', params: {id: post._id }}" class="shadow">
+            <div class="relative">
             <span
                 class="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"
             ></span>
-              <span
-                  class="absolute bottom-0 right-0 mb-4 mr-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base"
-              >Read More</span
-              >
+
+
             </div>
             <div class="bg-white px-5 py-6 xl:py-8">
             <span class="block font-body text-lg font-semibold text-black"
@@ -56,15 +48,19 @@
               >{{ post.description }}</span
               >
             </div>
-          </a>
+          </router-link>
         </div>
+        <router-link :to="{name: 'addPost'}"
+                     class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+        >Add Post
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import BlogService from "@/services/BlogService";
+import BlogService from "../services/BlogService";
 
 
 export default {
@@ -78,6 +74,7 @@ export default {
       BlogService.get_blogs()
           .then(response => {
             this.posts = response.data
+            console.log(this.posts)
           })
           .catch(err => {
             console.log(err)
@@ -89,7 +86,7 @@ export default {
   },
   created() {
     this.getPosts();
-    console.log(this.posts)
+
   },
 };
 </script>

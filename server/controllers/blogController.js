@@ -24,6 +24,7 @@ const update_blog = (req, res) => {
     blogModel.findByIdAndUpdate({_id: id}, {
         title: res.body.title,
         description: res.body.description,
+        date: res.body.date,
         content: res.body.content
     })
         .then(blogs => res.json(blogs))
