@@ -10,6 +10,7 @@ import Blog from "../views/Blog.vue";
 import Studio from "../views/Studio.vue";
 import AddPost from "../views/AddPost.vue"
 import Post from "../views/Post.vue";
+import UpdatePost from "../views/UpdatePost.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -45,6 +46,11 @@ const routes = [
     path: '/post/:id',
     name: 'blogPost',
     component: Post,
+  },
+  {
+    path: '/post/:id',
+    name: 'updatePost',
+    component: UpdatePost,
   },
   {
     path: '/Studio',

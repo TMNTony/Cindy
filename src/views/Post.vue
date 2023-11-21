@@ -33,6 +33,14 @@
             >Previous Post</span
             >
           </a>
+          <router-link :to="{name: 'updatePost', params: {id: post._id }}"
+              class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+          >Edit Post
+          </router-link>
+          <button @click="deletePost()"
+                       class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+          >Delete Post
+          </button>
           <a href="/" class="flex items-center">
         <span
             class="block pr-2 font-body text-lg font-bold uppercase text-primary md:pr-5"
@@ -72,25 +80,36 @@ export default {
   data() {
     return {
       post: {
-        title: "Dummy Title",
+        title: "",
         description: "",
-        date: "11/20/2023",
-        content: "Dummy Content"
+        date: "",
+        content: ""
       }
+    }
+  },
+  computed: {
+    id(){
+      return this.$route.params.id
     }
   },
   methods: {
     getPost(){
-      const id = this.$route.params.id
-      console.log(id)
-      blogService.get_blog(id)
+      blogService.get_blog(this.id)
           .then(response => {
             this.post = response.data
-            console.log(this.post)
           })
           .catch(err => {
             console.log(err)
           })
+    },
+    deletePost(){
+      blogService.delete_blog(this.id)
+          .then(() => {
+            console.log("Blog deleted successfully");
+            this.$router.push({name: "blog"});
+          }).catch((err => {
+        console.log(err)
+      }))
     }
   },
   created() {
