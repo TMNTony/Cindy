@@ -26,7 +26,8 @@ const update_video = async (req: Request, res: Response): Promise<void> => {
             {_id: id},
             {
                 videoURL: req.body.videoURL,
-                caption: req.body.caption
+                caption: req.body.caption,
+                id: req.body.id
             },
             {new: true}
         );
@@ -43,13 +44,12 @@ const update_video = async (req: Request, res: Response): Promise<void> => {
 const delete_video = async (req: Request, res: Response): Promise<void> => {
     const id: string = req.params.id;
     try {
-        const deletedVideo = videoModel.findByIdAndDelete({_id: id})
+        const deletedVideo = await videoModel.findByIdAndDelete({_id: id})
         if (deletedVideo) {
             res.status(200).json(deletedVideo)
         } else {
             res.status(400).json({error: "Video not found"})
         }
-
     } catch (err: any) {
         res.status(500).json({error: err.message || 'An error has occurred'})
     }

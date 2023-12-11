@@ -32,7 +32,8 @@ const update_video = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const id = req.params.id;
         const updatedVideo = yield Videos_1.videoModel.findByIdAndUpdate({ _id: id }, {
             videoURL: req.body.videoURL,
-            caption: req.body.caption
+            caption: req.body.caption,
+            id: req.body.id
         }, { new: true });
         if (updatedVideo) {
             res.status(200).json(updatedVideo);
@@ -48,7 +49,7 @@ const update_video = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const delete_video = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const deletedVideo = Videos_1.videoModel.findByIdAndDelete({ _id: id });
+        const deletedVideo = yield Videos_1.videoModel.findByIdAndDelete({ _id: id });
         if (deletedVideo) {
             res.status(200).json(deletedVideo);
         }

@@ -1,16 +1,17 @@
 import axios from "axios";
+const url = "http://localhost:3001/videos"
 
 export default {
     get_videos(){
-        return axios.get("/videos")
+        return axios.get(url)
     },
     create_video(video){
-        return axios.post("/videos/createVideo", video)
+        return axios.post(url + "/createVideo", video)
     },
     update_video(id, video){
-        return axios.put(`/videos/updateVideo/${id}`, video)
+        return axios.put(url `/updateVideo/${id}`, video)
     },
     delete_video(id){
-        return axios.delete(`/videos/deleteVideo/${id}`)
+        return axios.delete(url +`/deleteVideo/${id}`)
     }
 }
