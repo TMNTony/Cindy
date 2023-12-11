@@ -51,7 +51,7 @@ const update_blog = async (req: Request, res: Response): Promise<void> => {
             res.status(404).json({error: 'Blog not found'});
         }
     } catch (err) {
-        res.status(500).json({error: err.message || 'An error occurred'});
+        res.status(500).json({error: err.message || 'An error has occurred'});
     }
 };
 
