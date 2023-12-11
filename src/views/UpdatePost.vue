@@ -32,7 +32,6 @@
 </template>
 <script>
 import BlogService from "../services/BlogService";
-import {DateTime} from "luxon"
 import blogService from "../services/BlogService";
 
 export default {
