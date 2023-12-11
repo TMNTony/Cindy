@@ -8,158 +8,77 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+const Pictures_1 = require("../models/Pictures");
+const get_pictures = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const pictures = yield Pictures_1.pictureModel.find({});
+        res.status(200).json(pictures);
     }
-};
-var Pictures_1 = require("../models/Pictures");
-var get_pictures = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var pictures, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Pictures_1.pictureModel.find({})];
-            case 1:
-                pictures = _a.sent();
-                res.status(200).json(pictures);
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                res.status(500).json({ error: err_1.message || 'An error occurred' });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+    catch (err) {
+        res.status(500).json({ error: err.message || 'An error occurred' });
+    }
+});
+const get_picture = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const picture = yield Pictures_1.pictureModel.findById({});
+        if (picture) {
+            res.status(200).json(picture);
         }
-    });
-}); };
-var get_picture = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var picture, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Pictures_1.pictureModel.findById({})];
-            case 1:
-                picture = _a.sent();
-                if (picture) {
-                    res.status(200).json(picture);
-                }
-                else {
-                    res.status(404).json({ error: 'Picture not found' });
-                }
-                return [3 /*break*/, 3];
-            case 2:
-                err_2 = _a.sent();
-                res.status(500).json({ error: err_2.message || 'An error occurred' });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+        else {
+            res.status(404).json({ error: 'Picture not found' });
         }
-    });
-}); };
-var create_picture = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var createdPicture, err_3;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Pictures_1.pictureModel.create(req.body)];
-            case 1:
-                createdPicture = _a.sent();
-                res.status(201).json(createdPicture);
-                return [3 /*break*/, 3];
-            case 2:
-                err_3 = _a.sent();
-                res.status(500).json({ error: err_3.message || 'An error occurred' });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message || 'An error occurred' });
+    }
+});
+const create_picture = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const createdPicture = yield Pictures_1.pictureModel.create(req.body);
+        res.status(201).json(createdPicture);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message || 'An error occurred' });
+    }
+});
+const update_picture = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const updatedPicture = yield Pictures_1.pictureModel.findByIdAndUpdate({ _id: id }, {
+            pictureUrl: req.body.pictureURL,
+            caption: req.body.caption,
+        }, { new: true } // Return the updated document
+        );
+        if (updatedPicture) {
+            res.status(200).json(updatedPicture);
         }
-    });
-}); };
-var update_picture = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, updatedPicture, err_4;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                id = req.params.id;
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, Pictures_1.pictureModel.findByIdAndUpdate({ _id: id }, {
-                        pictureUrl: req.body.pictureURL,
-                        caption: req.body.caption,
-                    }, { new: true } // Return the updated document
-                    )];
-            case 2:
-                updatedPicture = _a.sent();
-                if (updatedPicture) {
-                    res.status(200).json(updatedPicture);
-                }
-                else {
-                    res.status(404).json({ error: 'Picture not found' });
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                err_4 = _a.sent();
-                res.status(500).json({ error: err_4.message || 'An error occurred' });
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+        else {
+            res.status(404).json({ error: 'Picture not found' });
         }
-    });
-}); };
-var delete_picture = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, deletedPicture, err_5;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                id = req.params.id;
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, Pictures_1.pictureModel.findByIdAndDelete({ _id: id })];
-            case 2:
-                deletedPicture = _a.sent();
-                if (deletedPicture) {
-                    res.status(200).json(deletedPicture);
-                }
-                else {
-                    res.status(404).json({ error: 'Picture not found' });
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                err_5 = _a.sent();
-                res.status(500).json({ error: err_5.message || 'An error occurred' });
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message || 'An error occurred' });
+    }
+});
+const delete_picture = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const deletedPicture = yield Pictures_1.pictureModel.findByIdAndDelete({ _id: id });
+        if (deletedPicture) {
+            res.status(200).json(deletedPicture);
         }
-    });
-}); };
+        else {
+            res.status(404).json({ error: 'Picture not found' });
+        }
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message || 'An error occurred' });
+    }
+});
 module.exports = {
-    get_pictures: get_pictures,
-    get_picture: get_picture,
-    update_picture: update_picture,
-    create_picture: create_picture,
-    delete_picture: delete_picture
+    get_pictures,
+    get_picture,
+    update_picture,
+    create_picture,
+    delete_picture
 };

@@ -4,13 +4,13 @@ import {Request, Response} from 'express';
 const getProfile = async (req: Request, res: Response): Promise<void> => {
     try {
         const id: string = req.params.id;
-        const profile: Profile = await profileModel.findById({_id: id});
+        const profile = await profileModel.findById({_id: id});
         if (profile) {
             res.status(200).json(profile);
         } else {
             res.status(404).json({error: 'Profile not found'});
         }
-    } catch (err) {
+    } catch (err: any) {
         res.status(500).json({error: err.message || 'An error occurred'});
     }
 }
@@ -19,7 +19,7 @@ const createProfile = async (req: Request, res: Response): Promise<void> => {
     try {
         const createdProfile: Profile = await profileModel.create(req.body);
         res.status(201).json(createdProfile);
-    } catch (err) {
+    } catch (err: any) {
         res.status(500).json({error: err.message || 'An error occurred'});
     }
 }
@@ -27,7 +27,7 @@ const createProfile = async (req: Request, res: Response): Promise<void> => {
 const updateProfile = async (req: Request, res: Response): Promise<void> => {
     const id: string = req.params.id;
     try {
-        const updatedProfile: Profile = await profileModel.findByIdAndUpdate(
+        const updatedProfile = await profileModel.findByIdAndUpdate(
             {_id: id},
             {
                 profilePicUrl: req.body.profilePicURL,
@@ -42,7 +42,7 @@ const updateProfile = async (req: Request, res: Response): Promise<void> => {
         } else {
             res.status(404).json({error: 'Profile not found'});
         }
-    } catch (err) {
+    } catch (err: any) {
         res.status(500).json({error: err.message || 'An error occurred'});
     }
 }
@@ -50,14 +50,14 @@ const updateProfile = async (req: Request, res: Response): Promise<void> => {
 const deleteProfile = async (req: Request, res: Response): Promise<void> => {
     const id = req.params.id
     try {
-        const deletedProfile: Profile = await profileModel.findByIdAndDelete({_id: id});
+        const deletedProfile= await profileModel.findByIdAndDelete({_id: id});
         if (deletedProfile) {
             res.status(200).json(deletedProfile)
         } else {
             res.status(400).json({error: 'Profile not found'})
         }
 
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({error: err.message} || 'An error occurred')
     }
 }
