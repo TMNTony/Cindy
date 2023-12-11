@@ -1,10 +1,15 @@
-const blogModel = require("../models/Blogs")
+import blogModel = require("../models/Blogs")
+import { Request, Response } from 'express';
+import { Document, Model } from 'mongoose';
 
-const get_blogs = (req, res) => {
-    blogModel.find({})
-        .then(blogs => res.json(blogs))
-        .catch(err => res.json(err))
-}
+const getBlogs = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const blogs: blogModel[] = await blogModel.find({});
+        res.json(blogs);
+    } catch (err) {
+        res.json({ error: err.message || 'An error occurred' });
+    }
+};
 
 const get_blog = (req, res) => {
     const id = req.params.id

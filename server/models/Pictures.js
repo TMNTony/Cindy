@@ -5,6 +5,6 @@ const pictureSchema = mongoose.Schema({
     caption: String
 })
 
-const pictureModel = mongoose.model("gallery", pictureSchema)
+const pictureModel = mongoose.model("pictures", pictureSchema)
 
 module.exports = pictureModel
