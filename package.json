@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "luxon": "^3.4.4",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
