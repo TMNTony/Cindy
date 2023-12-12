@@ -6,7 +6,7 @@
       >
         My Bell's Palsy Journey
       </h4>
-      <p v-if="!editing" v-html="content"></p>
+      <p class="font-body leading-relaxed text-grey-20" v-if="!editing" v-html="content"></p>
       <button class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20" @click="toggleEditing">{{editing ? "Close Editor" : "Update Journey" }}</button>
       <div v-if="editing">
         <TextEditor

@@ -14,29 +14,46 @@
         >
           I'm Cynthia Chambless, a Horn player and educator
         </h4>
-        <p class="pt-6 font-body leading-relaxed text-grey-20">
-          Cynthia Simpson Chambless is a professional horn player and highly
-          sought after teacher in the Birmingham area. She plays on a Stephens
-          Custom double horn, a Yamaha 667 double horn, and an Osmun Chicago 14
-          cup with an L6 gold rim. You can hear her perform with the Tuscaloosa
-          and Huntsville Symphony orchestras. Her repairman/horn guru is James
-          Baker with Custom Brass.
-          <router-link :to="{name: 'bio'}" class="pt-6 text-primary">Full Bio</router-link>
-        </p>
+        <button
+            class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+            @click="toggleEditingAbout">{{ !editingAbout ? "Edit About" : "Close Editor" }}
+        </button>
+        <div v-if="editingAbout">
+          <TextEditor
+              class="mt-4"
+              v-model="about"
+              :content="about"
+          />
+          <button
+              class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+              @click="updateAbout">Update About
+          </button>
+        </div>
+        <p class="font-body leading-relaxed text-grey-20" v-if="!editingAbout" v-html="about" ></p>
+        <router-link :to="{name: 'bio'}" class="pt-6 text-primary">Full Bio</router-link>
+
         <h4
             class="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl"
         >
           My Mission Statement
         </h4>
-        <p class="pt-6 font-body leading-relaxed text-grey-20">
-          Cynthia believes that all lessons learned in music can be applied to a student’s future life and career.
-          Setting goals, attention to detail, and confidence will benefit all paths in adulthood. Students receive a
-          hand tailored practice plan each lesson to help them achieve success at an individual level and represent
-          their school proudly at honor bands, solo festivals, and summer camps. Chambless also works with horn sections
-          on team work, group listening, and uplifting others. Students in the Chambless horn studio are often in her
-          program for many years and build a sense of trust in the process. All students can benefit from a hybrid
-          approach of private and group instruction that will teach them lifelong lessons.
-        </p>
+
+        <button
+            class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+            @click="toggleEditingMission">{{ !editingMission ? "Edit Mission" : "Close Editor" }}
+        </button>
+        <div v-if="editingMission">
+          <TextEditor
+              class="mt-4"
+              v-model="mission"
+              :content="mission">
+          </TextEditor>
+          <button
+              class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+              @click="updateMission">Update Mission
+          </button>
+        </div>
+        <p class="font-body leading-relaxed text-grey-20" v-if="!editingMission" v-html="mission" ></p>
 
         <div class="flex flex-col">
           <a class="pt-6 text-primary" href="http://www.tsoonline.org">Tuscaloosa Symphony Orchestra</a>
@@ -50,9 +67,50 @@
 
 <script>
 import Bio from "/src/views/Bio.vue";
+import TextEditor from "@/components/TextEditor.vue";
+import ProfileService from "@/services/ProfileService";
+
 export default {
+  data() {
+    return {
+      about: this.bio.about,
+      mission: this.bio.philosophy,
+      editingAbout: false,
+      editingMission: false
+    }
+  },
   components: {
+    TextEditor,
     Bio,
+  },
+  props: {
+    bio: Object
+  },
+  methods: {
+    toggleEditingAbout() {
+      this.editingAbout = !this.editingAbout
+    },
+    toggleEditingMission() {
+      this.editingMission = !this.editingMission
+    },
+    updateAbout(){
+      ProfileService.update_profile({about: this.about})
+          .then(response => {
+            this.editingAbout = false
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
+    updateMission(){
+      ProfileService.update_profile({philosophy: this.mission})
+          .then(response => {
+            this.editingMission = false
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    }
   }
 };
 </script>

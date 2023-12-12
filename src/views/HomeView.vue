@@ -2,8 +2,7 @@
   <div :class="{ 'max-h-screen overflow-hidden': mobileMenu }" class="relative">
     <div id="main" class="relative">
       <landing-component/>
-      <about-component/>
-      <services-component/>
+      <about-component v-if="Object.keys(bio).length > 0"  :bio = "bio" />
       <contact-component id="contact"/>
 
     </div>
@@ -13,10 +12,9 @@
 <script>
 
 import LandingComponent from "../components/Landing.vue";
-
 import AboutComponent from "../components/About.vue";
-import ServicesComponent from "../components/Services.vue";
 import ContactComponent from "../components/Contact.vue";
+import ProfileService from "../services/ProfileService";
 
 export default {
   name: "home-page",
@@ -24,16 +22,25 @@ export default {
 
     LandingComponent,
     AboutComponent,
-    ServicesComponent,
     ContactComponent,
 
   },
   data() {
     return {
       mobileMenu: false,
+      bio: {}
     };
   },
   methods: {
+    fetch_info() {
+      ProfileService.get_profile()
+          .then(response => {
+            this.bio = response.data
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
     toggleMobileMenu() {
       this.mobileMenu = !this.mobileMenu; // Toggle mobileMenu property
     },
@@ -53,5 +60,8 @@ export default {
       this.triggerNavItem(id);
     },
   },
+  mounted() {
+    this.fetch_info()
+  }
 };
 </script>

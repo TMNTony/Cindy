@@ -11,8 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const Profile_1 = require("../models/Profile");
 const getProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const id = req.params.id;
-        const profile = yield Profile_1.profileModel.findById({ _id: id });
+        const profile = yield Profile_1.profileModel.findOne();
         if (profile) {
             res.status(200).json(profile);
         }
@@ -34,13 +33,13 @@ const createProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
     try {
-        const updatedProfile = yield Profile_1.profileModel.findByIdAndUpdate({ _id: id }, {
+        const updatedProfile = yield Profile_1.profileModel.findOneAndUpdate({}, {
             profilePicUrl: req.body.profilePicURL,
             bio: req.body.bio,
             about: req.body.about,
-            content: req.body.content,
+            philosophy: req.body.philosophy,
+            achievements: req.body.achievements
         }, { new: true } // Return the updated document
         );
         if (updatedProfile) {

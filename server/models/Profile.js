@@ -6,7 +6,8 @@ const profileSchema = new mongoose_1.Schema({
     profilePicURL: String,
     bio: String,
     about: String,
-    philosophy: String
+    philosophy: String,
+    achievements: String
 });
 const profileModel = (0, mongoose_1.model)("profile", profileSchema);
 exports.profileModel = profileModel;

@@ -5,14 +5,16 @@ interface Profile extends Document {
     profilePicURL: string,
     bio: string,
     about: string,
-    philosophy: string
+    philosophy: string,
+    achievements: string,
 }
 
 const profileSchema: Schema = new Schema({
     profilePicURL: String,
     bio: String,
     about: String,
-    philosophy: String
+    philosophy: String,
+    achievements: String
 })
 
 const profileModel: Model<Profile>= model<Profile>("profile", profileSchema)
