@@ -6,36 +6,65 @@
       >
         My Bell's Palsy Journey
       </h4>
-      <p class="pt-6 font-body leading-relaxed text-grey-20 h-screen">
-        This page is currently under development, but will detail my struggle with and recovery from Bell's
-        Palsy.</p>
-      <p class="pt-6 font-body leading-relaxed text-grey-20 h-screen">
-
-        Bell's palsy is a medical condition that causes sudden, temporary weakness or paralysis of the muscles on
-        one side of the face. It occurs when the facial nerve, which controls the muscles of the face, becomes
-        inflamed. The exact cause of Bell's palsy is not well understood, but it is thought to be related to viral
-        infections.</p>
+      <p v-if="!editing" v-html="content"></p>
+      <button class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20" @click="toggleEditing">{{editing ? "Close Editor" : "Update Journey" }}</button>
+      <div v-if="editing">
+        <TextEditor
+            class="mt-4"
+            v-model="content"
+            :content="content"
+        />
+        <button class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20" @click="updateContent">Update</button>
+      </div>
     </div>
   </div>
 
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
+import bellsService from "@/services/BellsService";
+import TextEditor from "@/components/TextEditor.vue";
 
 export default {
   name: "bells",
+  components: {TextEditor},
   data() {
     return {
-      mobileMenu: false
+      mobileMenu: false,
+      editing: false,
+      content: "",
     }
   },
   methods: {
     toggleMobileMenu() {
       this.mobileMenu = !this.mobileMenu; // Toggle mobileMenu property
     },
-  }
+    toggleEditing() {
+      this.editing = !this.editing
+    },
+    getContent() {
+      bellsService.get_content()
+          .then(response => {
+            this.content = response.data.content
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
+    updateContent() {
+      bellsService.update_content({content: this.content})
+          .then(response => {
+            this.content = response.data.content
+            this.editing = false;
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
+  },
+  created() {
+    this.getContent()
+  },
 }
 
 
