@@ -3,8 +3,7 @@ import {Request, Response} from 'express';
 
 const getProfile = async (req: Request, res: Response): Promise<void> => {
     try {
-        const id: string = req.params.id;
-        const profile = await profileModel.findById({_id: id});
+        const profile = await profileModel.findOne();
         if (profile) {
             res.status(200).json(profile);
         } else {
@@ -25,15 +24,16 @@ const createProfile = async (req: Request, res: Response): Promise<void> => {
 }
 
 const updateProfile = async (req: Request, res: Response): Promise<void> => {
-    const id: string = req.params.id;
+
     try {
-        const updatedProfile = await profileModel.findByIdAndUpdate(
-            {_id: id},
+        const updatedProfile = await profileModel.findOneAndUpdate(
+            {},
             {
                 profilePicUrl: req.body.profilePicURL,
                 bio: req.body.bio,
                 about: req.body.about,
-                content: req.body.content,
+                philosophy: req.body.philosophy,
+                achievements: req.body.achievements
             },
             {new: true} // Return the updated document
         );

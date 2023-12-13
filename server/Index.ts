@@ -5,6 +5,7 @@ import blogRouter from './routes/blogRoutes'
 import pictureRouter from './routes/pictureRoutes'
 import profileRouter from './routes/profileRoutes'
 import videoRouter from './routes/videoRoutes'
+import bellsRouter from './routes/bellsRoutes'
 
 
 const app: Express = express();
@@ -14,6 +15,7 @@ app.use(blogRouter)
 app.use(pictureRouter)
 app.use(profileRouter)
 app.use(videoRouter)
+app.use(bellsRouter)
 
 mongoose.connect('mongodb://localhost:27017/cindy')
     .then(() => console.log('Connected to MongoDB'))

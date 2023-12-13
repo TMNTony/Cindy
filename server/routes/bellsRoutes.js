@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
-const profileController_1 = __importDefault(require("../controllers/profileController"));
-router.get("/profile", profileController_1.default.getProfile);
-router.put("/profile/updateProfile", profileController_1.default.updateProfile);
+const bellsController_1 = __importDefault(require("../controllers/bellsController"));
+router.get("/bells", bellsController_1.default.get_content);
+router.put("/bells/updateContent", bellsController_1.default.update_content);
 module.exports = router;

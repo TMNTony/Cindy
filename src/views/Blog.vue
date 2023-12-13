@@ -74,7 +74,6 @@ export default {
       BlogService.get_blogs()
           .then(response => {
             this.posts = response.data
-            console.log(this.posts)
           })
           .catch(err => {
             console.log(err)

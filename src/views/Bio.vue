@@ -11,66 +11,43 @@
             >
               Full Biography
             </h4>
-            <p class="pt-6 font-body leading-relaxed text-grey-20">
-              Alabama native, Cynthia Simpson Chambless, is a highly sought-after horn teacher and performer. She is
-              currently holding positions as 4th horn of the Huntsville (AL) Symphony Orchestra and 3rd horn of the
-              Tuscaloosa (AL) Symphony Orchestra. In addition to being a freelance performer across the southeast, she
-              has performed as 2nd horn of the Starkville (MS) Symphony Orchestra, and as a substitute musician with the
-              Alabama Symphony Orchestra, the Kansas City Symphony, the South Dakota Symphony, and Chamber Music
-              Amarillo (TX).</p>
-
-            <p class="pt-6 font-body leading-relaxed text-grey-20">Her honors include second prize at the 2015
-              International Horn Competition of America Collegiate
-              Division,
-              2015-2016 semi-finalist for the New World Symphony, and 2010/2011 participant at the Round Top Festival
-              Institute. She has also won numerous awards at International Horn Society regional competitions in the
-              southeast and Midwest.</p>
-
-            <p class="pt-6 font-body leading-relaxed text-grey-20"> Cynthia maintains a full studio of private lesson
-              students across the Birmingham metro area. Her students
-              consistently rank in Alabama All State band, Alabama All-State Orchestra, Alabama All-State Solo Festival,
-              and All-District bands. She teaches private lessons and sectionals for 10 schools and sees over 100 horn
-              students each month.</p>
-
-            <p class="pt-6 font-body leading-relaxed text-grey-20">Chambless received a B.M. and M.M. from the
-              University of Alabama under the tutelage of Charles “Skip”
-              Snead. While at UA, she taught lessons to undergraduate horn students and was a graduate teaching
-              assistant in the music theory department. She also received a Performer’s Certificate from the University
-              of Missouri-Kansas City, studying with Martin Hackleman.</p>
-
+            <p v-if="!editingBio" class="pt-6 font-body leading-relaxed text-grey-20" v-html="profile.bio"></p>
+            <button
+                class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                @click="toggleEditingBio">{{ !editingBio ? "Edit Bio" : "Close Editor" }}
+            </button>
+            <div v-if="editingBio">
+              <TextEditor
+                  class="mt-4"
+                  v-model="profile.bio"
+                  :content="profile.bio"
+              />
+              <button
+                  class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                  @click="updateBio">Update Bio
+              </button>
+            </div>
             <h4
                 class="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl"
             >
               Student Achievements
             </h4>
-            <p class="pt-6 font-body leading-relaxed text-grey-20">
-              Students under Cynthia’s mentorship have accomplished a number of impressive musical feats. Students
-              attend a number of university hosted honor bands throughout Alabama, score superior ratings at Solo and
-              Ensemble, and attend university hosted summer camps. Listed below are the highest honors received at the
-              state and national level: </p>
-            <ul class="pt-6 font-body leading-relaxed text-grey-20">
-              <li>Alabama All-State Solo Festival Top 10 Finalist 2023</li>
-              <li>1st Chair Alabama All-State Red Band 2016, 2022, 2023</li>
-              <li>1st Chair Alabama All-State Festival Orchestra 2022, 2023</li>
-              <li>District V Red Band 2016, 2018, 2019, 2022, 2023</li>
-              <li>District IV Red Band 2022, 2023</li>
-              <li>District IV MS All-State Band 2018, 2021, 2022, 2023</li>
-              <li>District IV MS Honor Band 2018, 2019, 2020, 2021, 2022, 2023</li>
-            </ul>
-            <p class="pt-6 font-body leading-relaxed text-grey-20">
-              Students from the Chambless horn studio have received music scholarships at a number of Universities.
-              These scholarships are awarded to students ranging from Music Majors to Music Minors to participants in
-              marching/concert ensembles majoring in another field. Their music scholarships allow them to pursue their
-              dreams, get paid to do something they love, and make new friends. </p>
-            <ul class="pt-6 font-body leading-relaxed text-grey-20">
-              <li>University of Alabama</li>
-              <li>Auburn University</li>
-              <li>University of Alabama at Birmingham</li>
-              <li>Jacksonville State University</li>
-              <li>Samford University</li>
-              <li>University of Montevallo</li>
-              <li>Oglethorpe University</li>
-            </ul>
+            <p v-if="!editingAwards" class="pt-6 font-body leading-relaxed text-grey-20" v-html="profile.achievements"></p>
+            <button
+                class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                @click="toggleEditingAwards">{{ !editingAwards ? "Edit Achievements" : "Close Editor" }}
+            </button>
+            <div v-if="editingAwards">
+              <TextEditor
+                  class="mt-4"
+                  v-model="profile.achievements"
+                  :content="profile.achievements"
+              />
+              <button
+                  class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                  @click="updateAwards">Update Achievements
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -78,15 +55,57 @@
   </div>
 </template>
 <script>
-
+import ProfileService from "@/services/ProfileService";
+import TextEditor from "@/components/TextEditor.vue";
 
 export default {
   name: 'bio',
   data() {
     return {
       mobileMenu: false,
+      editingBio: false,
+      editingAwards: false,
+      profile: {}
     }
   },
-  components: {},
+  components: {TextEditor},
+  methods: {
+    toggleEditingBio() {
+      this.editingBio = !this.editingBio
+    },
+    toggleEditingAwards() {
+      this.editingAwards = !this.editingAwards
+    },
+    updateBio() {
+      ProfileService.update_profile({bio: this.profile.bio})
+          .then(res => {
+            this.editingBio = false
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
+    updateAwards() {
+      ProfileService.update_profile({achievements: this.profile.achievements})
+          .then(res => {
+            this.editingAwards = false
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
+    fetch_profile() {
+      ProfileService.get_profile()
+          .then(res => {
+            this.profile = res.data
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    }
+  },
+  created() {
+    this.fetch_profile()
+  }
 }
 </script>

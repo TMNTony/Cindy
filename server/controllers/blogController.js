@@ -12,7 +12,12 @@ const Blogs_1 = require("../models/Blogs");
 const get_blogs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const blogs = yield Blogs_1.blogModel.find({});
-        res.status(200).json(blogs);
+        if (blogs !== null) {
+            res.status(200).json(blogs);
+        }
+        else {
+            res.status(404).json({ error: "Content not found" });
+        }
     }
     catch (err) {
         res.status(500).json({ error: err.message || 'An error occurred' });
