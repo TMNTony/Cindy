@@ -62,7 +62,7 @@ const update_blog = async (req: Request, res: Response): Promise<void> => {
 const delete_blog = async (req: Request, res: Response): Promise<void> => {
     const id: string = req.params.id;
     try {
-        const deletedBlog: Blog | null = await blogModel.findByIdAndDelete({_id: id});
+        const deletedBlog: Blog | null = await blogModel.findByIdAndDelete(id);
         if (deletedBlog) {
             res.status(200).json(deletedBlog);
         } else {

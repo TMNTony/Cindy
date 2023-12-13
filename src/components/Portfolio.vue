@@ -8,30 +8,24 @@
     <div
         class="mx-auto grid w-full items-center   gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-3"
     >
-      <div v-for="photo in gallery" :key="photo.id"
+      <div v-for="photo in gallery" :key="photo._id"
            class=" mx-auto transform transition-all hover:scale-105 md:mx-0">
 
         <img
-            :src="imageUrl(photo.pictureURL)"
+            :src="getBase64Image(photo.img.imgData)"
             class="w-96 shadow"
-            :alt=photo.id
+            :alt=photo.name
         />
-        <div class="text-center font-header">{{ photo.caption }}</div>
+        <div class="text-center font-header">{{ photo.name }}</div>
         <div class="flex items-center justify-center">
-          <button @click="deletePicture()"
+          <button @click="deletePicture(photo._id)"
                   class="mt-6 items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
           >Delete Picture
           </button>
         </div>
       </div>
-
     </div>
-    <div class="flex items-center justify-center mb-4">
-      <router-link :to="{name: 'addPicture'}"
-                   class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
-        Add Picture
-      </router-link>
-    </div>
+    <AddPic/>
     <h2
         class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl"
     >
@@ -40,7 +34,7 @@
     <div
         class="mx-auto grid w-full items-center   gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2"
     >
-      <div v-for="video in videos" :key="video._id"
+      <div v-for="video in videos" :key="video.id"
            class=" mx-auto  md:mx-0">
         <div class="relative aspect-w-16 aspect-h-9 transform transition-all hover:scale-105">
           <iframe
@@ -58,23 +52,26 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-center">
-      <router-link :to="{name: 'addVideo'}"
-                   class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
-        Add Video
-      </router-link>
-    </div>
+    <AddVid/>
   </div>
 </template>
 
 <script>
-import PictureService from "@/services/PictureService";
+import ImageService from "@/services/ImageService";
 import VideoService from "@/services/VideoService";
+import AddPic from "@/components/AddPic.vue";
+import AddVid from "@/components/AddVid.vue";
 
 export default {
+  components: {AddPic, AddVid},
 
   data() {
     return {
+      createPic: false,
+      picture: {
+        url: "",
+        caption: ""
+      },
       gallery: [],
       videos: [],
       showModal: false,
@@ -82,10 +79,14 @@ export default {
     }
   },
   methods: {
+    togglePic(){
+      this.createPic = ! this.createPic
+    },
     getPhotos() {
-      PictureService.get_pictures()
+      ImageService.get_images()
           .then(response => {
             this.gallery = response.data
+            console.log(this.gallery.length)
           })
           .catch(err => {
             console.log(err)
@@ -100,6 +101,17 @@ export default {
             console.log(err)
           })
     },
+    async deletePicture(id){
+      try {
+        const response = await ImageService.delete_image(id);
+        if (response.status === 200) {
+          // Remove the deleted video from the local data
+          this.gallery = this.gallery.filter(image => image._id !== id);
+        }
+      } catch (error) {
+        console.error("Error deleting video:", error);
+      }
+    },
     async deleteVideo(id) {
       try {
         const response = await VideoService.delete_video(id);
@@ -111,8 +123,22 @@ export default {
         console.error("Error deleting video:", error);
       }
     },
-    imageUrl(imagePath) {
-      return new URL(`/src/assets/img/${imagePath}`, import.meta.url)
+    getImageUrl(image) {
+      if (!image || !image.img || !image.img.imgData || !image.contentType) {
+        // Handle missing or incorrect properties
+        console.log("incorrect properties")
+        return '';
+      }
+
+      const imageData = image.img.imgData.data;
+      if (!Array.isArray(imageData) || imageData.length === 0) {
+        // Handle invalid image data
+        console.log("invalid image data")
+        return '';
+      }
+
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(imageData)));
+      return `data:${image.contentType};base64,${base64String}`;
     },
     openModal(imagePath) {
       this.modalImageUrl = new URL(`/src/assets/img/${imagePath}`, import.meta.url);
@@ -121,6 +147,11 @@ export default {
     closeModal() {
       this.showModal = false;
     },
+
+    getBase64Image(buffer) {
+      return `data:image/jpeg;base64,${buffer.toString('base64')}`;
+    },
+
   },
   created() {
     this.getPhotos();

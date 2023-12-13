@@ -7,4 +7,4 @@ router.post("/videos/createVideo", videoController.create_video)
 router.put("/videos/updateVideo/:id", videoController.update_video)
 router.delete("/videos/deleteVideo/:id", videoController.delete_video)
 
-export = router
+export = router;

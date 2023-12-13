@@ -109,35 +109,7 @@ export function createStore() {
                     pictureURL: "vh.png"
                 }
             ],
-            posts: [
-                // {
-                //   title: "",
-                //   description: "",
-                //   image: "",
-                //   content: ""
-                // }
-            ],
-            services: [
-                {
-                    icon: "fa fa-user",
-                    service: "Private Lessons",
-                    description: ""
-                },
-                {
-                    icon: "fa fa-users",
-                    service: "Master Classes",
-                    description: ""
-                }
-            ],
-            experience: [
-                {
-                    date: "",
-                    title: "",
-                    description: "",
-                    icon: ""
-                },
 
-            ]
         },
         mutations: {},
         getters: {

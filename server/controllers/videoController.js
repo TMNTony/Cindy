@@ -49,7 +49,7 @@ const update_video = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const delete_video = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const deletedVideo = yield Videos_1.videoModel.findByIdAndDelete({ _id: id });
+        const deletedVideo = yield Videos_1.videoModel.findByIdAndDelete(id);
         if (deletedVideo) {
             res.status(200).json(deletedVideo);
         }
@@ -58,6 +58,7 @@ const delete_video = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
     }
     catch (err) {
+        console.log(err);
         res.status(500).json({ error: err.message || 'An error has occurred' });
     }
 });

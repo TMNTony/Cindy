@@ -12,6 +12,7 @@ export default {
         return axios.put(url `/updateVideo/${id}`, video)
     },
     delete_video(id){
+        console.log(id)
         return axios.delete(url +`/deleteVideo/${id}`)
     }
 }
