@@ -11,8 +11,8 @@ import Studio from "../views/Studio.vue";
 import AddPost from "../views/AddPost.vue"
 import Post from "../views/Post.vue";
 import UpdatePost from "../views/UpdatePost.vue";
-import AddVideo from "../views/AddVid.vue";
-import AddPic from "../views/AddPic.vue";
+import AddVideo from "../components/AddVid.vue";
+import AddPic from "../components/AddPic.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component

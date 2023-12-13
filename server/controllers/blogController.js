@@ -71,7 +71,7 @@ const update_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 const delete_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const deletedBlog = yield Blogs_1.blogModel.findByIdAndDelete({ _id: id });
+        const deletedBlog = yield Blogs_1.blogModel.findByIdAndDelete(id);
         if (deletedBlog) {
             res.status(200).json(deletedBlog);
         }
