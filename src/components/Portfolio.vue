@@ -12,7 +12,7 @@
            class=" mx-auto transform transition-all hover:scale-105 md:mx-0">
 
         <img
-            :src="getImageUrl(photo.img.data)"
+            :src="getBase64Image(photo.img.imgData)"
             class="w-96 shadow"
             :alt=photo.name
         />
@@ -86,6 +86,7 @@ export default {
       ImageService.get_images()
           .then(response => {
             this.gallery = response.data
+            console.log(this.gallery.length)
           })
           .catch(err => {
             console.log(err)
@@ -123,7 +124,20 @@ export default {
       }
     },
     getImageUrl(image) {
-      const base64String = btoa(String.fromCharCode(...new Uint8Array(image.img)));
+      if (!image || !image.img || !image.img.imgData || !image.contentType) {
+        // Handle missing or incorrect properties
+        console.log("incorrect properties")
+        return '';
+      }
+
+      const imageData = image.img.imgData.data;
+      if (!Array.isArray(imageData) || imageData.length === 0) {
+        // Handle invalid image data
+        console.log("invalid image data")
+        return '';
+      }
+
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(imageData)));
       return `data:${image.contentType};base64,${base64String}`;
     },
     openModal(imagePath) {
@@ -133,6 +147,11 @@ export default {
     closeModal() {
       this.showModal = false;
     },
+
+    getBase64Image(buffer) {
+      return `data:image/jpeg;base64,${buffer.toString('base64')}`;
+    },
+
   },
   created() {
     this.getPhotos();

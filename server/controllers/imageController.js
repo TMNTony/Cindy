@@ -12,8 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const promises_1 = __importDefault(require("fs/promises"));
-const Upload_1 = require("../models/Upload");
-const Pictures_1 = require("../models/Pictures");
+const Image_1 = require("../models/Image");
 const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.file) {
@@ -21,10 +20,10 @@ const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
         const { filename } = req.file;
         const imageData = yield promises_1.default.readFile("uploads/" + filename);
-        const saveImage = yield Upload_1.uploadModel.create({
+        const saveImage = yield Image_1.imageModel.create({
             name: req.body.name,
             img: {
-                data: imageData,
+                imgData: imageData,
                 contentType: "image/png",
             },
         });
@@ -38,7 +37,8 @@ const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 const get_images = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allUploads = yield Upload_1.uploadModel.find({});
+        const allUploads = yield Image_1.imageModel.find({});
+        console.log(allUploads);
         res.status(200).json(allUploads);
     }
     catch (err) {
@@ -49,7 +49,7 @@ const delete_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const id = req.params.id;
     try {
         console.log('Deleting picture with ID:', id);
-        const deletedPicture = yield Pictures_1.pictureModel.findByIdAndDelete(id);
+        const deletedPicture = yield Image_1.imageModel.findByIdAndDelete(id);
         if (deletedPicture) {
             res.status(200).json(deletedPicture);
         }
@@ -65,10 +65,10 @@ const delete_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const update_image = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const updatedImage = yield Pictures_1.pictureModel.findByIdAndUpdate({ _id: id }, {
+        const updatedImage = yield Image_1.imageModel.findByIdAndUpdate({ _id: id }, {
             name: req.body.name,
             img: {
-                data: req.body.data,
+                imgData: req.body.imgData,
                 contentType: "image/png",
             }
         }, { new: true } // Return the updated document

@@ -10,7 +10,7 @@ const blogRoutes_1 = __importDefault(require("./routes/blogRoutes"));
 const profileRoutes_1 = __importDefault(require("./routes/profileRoutes"));
 const videoRoutes_1 = __importDefault(require("./routes/videoRoutes"));
 const bellsRoutes_1 = __importDefault(require("./routes/bellsRoutes"));
-const uploadRoutes_1 = __importDefault(require("./routes/uploadRoutes"));
+const imageRoutes_1 = __importDefault(require("./routes/imageRoutes"));
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)());
@@ -20,7 +20,7 @@ app.use(blogRoutes_1.default);
 app.use(profileRoutes_1.default);
 app.use(videoRoutes_1.default);
 app.use(bellsRoutes_1.default);
-app.use(uploadRoutes_1.default);
+app.use(imageRoutes_1.default);
 mongoose_1.default.connect('mongodb://localhost:27017/cindy')
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Error connecting to MongoDB:', err.message));
