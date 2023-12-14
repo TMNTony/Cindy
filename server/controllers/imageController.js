@@ -55,11 +55,14 @@ const delete_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const update_image = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const updatedImage = yield Image_1.imageModel.findByIdAndUpdate({ _id: id }, {
+        if (!req.file) {
+            throw new Error('No file uploaded');
+        }
+        const updatedImage = yield Image_1.imageModel.findByIdAndUpdate((id), {
             caption: req.body.caption,
             img: {
-                imgData: req.body.imgData,
-                contentType: "image/png",
+                imgData: req.file.buffer, // Use req.file.buffer for the image data
+                contentType: req.file.mimetype, // Use req.file.mimetype for the content type
             }
         }, { new: true } // Return the updated document
         );

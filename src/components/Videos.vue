@@ -4,7 +4,7 @@
   >
     <div v-for="video in videos" :key="video.id"
          class=" mx-auto  md:mx-0">
-      <div class="relative aspect-w-16 aspect-h-9 transform transition-all hover:scale-105">
+      <div class="relative aspect-w-16 aspect-h-9">
         <iframe
             width="560"
             height="315"

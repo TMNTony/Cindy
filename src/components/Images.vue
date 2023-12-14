@@ -3,7 +3,7 @@
       class="mx-auto grid w-full items-center   gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-3"
   >
     <div v-for="photo in formattedImages" :key="photo._id"
-         class=" mx-auto transform transition-all hover:scale-105 md:mx-0">
+         class=" mx-auto  md:mx-0">
 
       <img
           :src="photo.imgSrc"
@@ -54,7 +54,6 @@ export default {
       ImageService.get_images()
           .then(response => {
             this.gallery = response.data
-            console.log(this.gallery.length)
           })
           .catch(err => {
             console.log(err)

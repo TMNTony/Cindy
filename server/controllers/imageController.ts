@@ -49,13 +49,16 @@ const delete_image = async (req: Request, res: Response): Promise<void> => {
 const update_image = async (req: Request, res: Response): Promise<void> => {
     const id: string = req.params.id
     try {
+        if (!req.file) {
+            throw new Error('No file uploaded');
+        }
         const updatedImage= await imageModel.findByIdAndUpdate(
-            {_id: id},
+            (id),
             {
                 caption: req.body.caption,
                 img: {
-                    imgData: req.body.imgData,
-                    contentType: "image/png",
+                    imgData: req.file.buffer, // Use req.file.buffer for the image data
+                    contentType: req.file.mimetype, // Use req.file.mimetype for the content type
                 }
             },
             {new: true} // Return the updated document

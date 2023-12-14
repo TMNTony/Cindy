@@ -20,7 +20,7 @@
       </div>
       <div class="flex items-center justify-center mb-4">
         <button
-            class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+            class="transform transition-all hover:scale-10 mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
         >Submit
         </button>
       </div>

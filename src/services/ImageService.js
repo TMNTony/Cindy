@@ -7,11 +7,7 @@ export default {
         return axios.get(url)
     },
     upload_image(image){
-        return axios.post(url, image, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        })
+        return axios.post(url, image)
     },
     delete_image(id){
         return axios.delete(url + `/deleteImage/${id}`)
