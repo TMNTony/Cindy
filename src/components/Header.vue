@@ -100,28 +100,28 @@
 
         <ul class="mt-8 flex flex-col">
           <li class="py-2">
-            <router-link :to="{name: 'home'}"
+            <router-link :to="{name: 'home'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Home
             </router-link>
           </li>
 
           <li class="py-2">
-            <router-link :to="{name: 'bio'}"
+            <router-link :to="{name: 'bio'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Bio
             </router-link>
           </li>
 
           <li class="py-2">
-            <router-link :to="{name: 'media'}"
+            <router-link :to="{name: 'media'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Media
             </router-link>
           </li>
 
           <li class="py-2">
-            <router-link :to="{name: 'studio'}"
+            <router-link :to="{name: 'studio'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Studio
             </router-link>
@@ -129,14 +129,14 @@
 
 
           <li class="py-2">
-            <router-link :to="{name: 'blog'}"
+            <router-link :to="{name: 'blog'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Blog
             </router-link>
           </li>
 
           <li class="py-2">
-            <router-link :to="{name: 'bells'}"
+            <router-link :to="{name: 'bells'}" @click="toggleMobileMenu"
                          class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white"
             >Bell's Palsy
             </router-link>
@@ -181,6 +181,7 @@ export default {
           // Wait for the route change to complete, then scroll to "Contact"
           const element = document.getElementById(id);
           if (element) {
+            console.log(element)
             element.scrollIntoView({behavior: "smooth"});
           }
         })
