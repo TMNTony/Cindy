@@ -38,7 +38,6 @@ const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const get_images = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const allUploads = yield Image_1.imageModel.find({});
-        console.log(allUploads);
         res.status(200).json(allUploads);
     }
     catch (err) {

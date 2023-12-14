@@ -31,7 +31,6 @@ const upload_image = async (req: Request, res: Response): Promise<void> => {
 const get_images = async (req: Request, res: Response): Promise<void> => {
     try {
         const allUploads: Image[] | null = await imageModel.find({})
-        console.log(allUploads)
         res.status(200).json(allUploads)
     } catch (err: any) {
         res.status(500).json({error: err.message || "An error occurred"})

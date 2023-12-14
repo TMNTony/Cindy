@@ -8,11 +8,11 @@
     <div
         class="mx-auto grid w-full items-center   gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-3"
     >
-      <div v-for="photo in gallery" :key="photo._id"
+      <div v-for="photo in formattedImages" :key="photo._id"
            class=" mx-auto transform transition-all hover:scale-105 md:mx-0">
 
         <img
-            :src="getBase64Image(photo.img.imgData)"
+            :src="photo.imgSrc"
             class="w-96 shadow"
             :alt=photo.name
         />
@@ -78,9 +78,19 @@ export default {
       modalImageUrl: "",
     }
   },
+  computed: {
+    formattedImages() {
+      return this.gallery.map(photo => {
+        return {
+          ...photo,
+          imgSrc: this.getBase64Image(photo.img.imgData.data),
+        };
+      });
+    },
+  },
   methods: {
-    togglePic(){
-      this.createPic = ! this.createPic
+    togglePic() {
+      this.createPic = !this.createPic
     },
     getPhotos() {
       ImageService.get_images()
@@ -101,7 +111,7 @@ export default {
             console.log(err)
           })
     },
-    async deletePicture(id){
+    async deletePicture(id) {
       try {
         const response = await ImageService.delete_image(id);
         if (response.status === 200) {
@@ -123,23 +133,6 @@ export default {
         console.error("Error deleting video:", error);
       }
     },
-    getImageUrl(image) {
-      if (!image || !image.img || !image.img.imgData || !image.contentType) {
-        // Handle missing or incorrect properties
-        console.log("incorrect properties")
-        return '';
-      }
-
-      const imageData = image.img.imgData.data;
-      if (!Array.isArray(imageData) || imageData.length === 0) {
-        // Handle invalid image data
-        console.log("invalid image data")
-        return '';
-      }
-
-      const base64String = btoa(String.fromCharCode(...new Uint8Array(imageData)));
-      return `data:${image.contentType};base64,${base64String}`;
-    },
     openModal(imagePath) {
       this.modalImageUrl = new URL(`/src/assets/img/${imagePath}`, import.meta.url);
       this.showModal = true;
@@ -149,7 +142,9 @@ export default {
     },
 
     getBase64Image(buffer) {
-      return `data:image/jpeg;base64,${buffer.toString('base64')}`;
+      const binaryString = buffer.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
+      const base64String = btoa(binaryString);
+      return `data:image/jpeg;base64,${base64String}`;
     },
 
   },
