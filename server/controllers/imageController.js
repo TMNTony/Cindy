@@ -8,31 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-const promises_1 = __importDefault(require("fs/promises"));
 const Image_1 = require("../models/Image");
 const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.file) {
             throw new Error('No file uploaded');
         }
-        const { filename } = req.file;
-        const imageData = yield promises_1.default.readFile("uploads/" + filename);
         const saveImage = yield Image_1.imageModel.create({
-            name: req.body.name,
+            caption: req.body.caption,
             img: {
-                imgData: imageData,
-                contentType: "image/png",
+                imgData: req.file.buffer, // Use req.file.buffer for the image data
+                contentType: req.file.mimetype, // Use req.file.mimetype for the content type
             },
         });
-        // Delete the uploaded file after successfully saving to the database
-        // await fs.unlink("uploads/" + filename);
         res.status(201).json(saveImage);
     }
     catch (err) {
-        res.status(500).json({ error: err.message || "An error occurred" });
+        res.status(500).json({ error: err.message || 'An error occurred' });
     }
 });
 const get_images = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,7 +39,6 @@ const get_images = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 const delete_image = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        console.log('Deleting picture with ID:', id);
         const deletedPicture = yield Image_1.imageModel.findByIdAndDelete(id);
         if (deletedPicture) {
             res.status(200).json(deletedPicture);
@@ -65,7 +56,7 @@ const update_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const id = req.params.id;
     try {
         const updatedImage = yield Image_1.imageModel.findByIdAndUpdate({ _id: id }, {
-            name: req.body.name,
+            caption: req.body.caption,
             img: {
                 imgData: req.body.imgData,
                 contentType: "image/png",

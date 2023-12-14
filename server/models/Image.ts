@@ -1,7 +1,7 @@
 import {Schema, model, Model, Document} from "mongoose";
 
 interface Image extends Document {
-    name: string,
+    caption: string,
     img: {
         imgData: Buffer,
         contentType: string
@@ -9,7 +9,7 @@ interface Image extends Document {
 }
 
 const imageSchema: Schema = new Schema({
-    name: String,
+    caption: String,
     img: {
         imgData: Buffer,
         contentType: String

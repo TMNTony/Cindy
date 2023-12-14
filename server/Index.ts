@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import bodyParser from "body-parser";
 import blogRouter from './routes/blogRoutes';
 import profileRouter from './routes/profileRoutes';
 import videoRouter from './routes/videoRoutes';
@@ -10,6 +11,8 @@ import imageRouter from "./routes/imageRoutes"
 const app: Express = express();
 
 // Middleware
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use(express.json());
 
