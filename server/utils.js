@@ -8,7 +8,7 @@ const crypto_1 = __importDefault(require("crypto"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const pathToKey = path_1.default.join(__dirname, '..', 'id_rsa_priv.pem');
+const pathToKey = path_1.default.join(__dirname, '..', '/server/id_rsa_priv.pem');
 const PRIVATE_KEY = fs_1.default.readFileSync(pathToKey, 'utf8');
 /**
  * -------------- HELPER FUNCTIONS ----------------

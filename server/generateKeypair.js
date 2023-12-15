@@ -1,33 +1,30 @@
-/**
- * This module will generate a public and private keypair and save to current directory
- *
- * Make sure to save the private key elsewhere after generated!
- */
+// generateKeypair.js
+
 import crypto from "crypto";
-import fs from 'fs'
+import { writeFile } from "fs/promises";
+import { fileURLToPath } from "url";
+import path from "path";
 
-function genKeyPair() {
+async function genKeyPair() {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
-    // Generates an object where the keys are stored in properties `privateKey` and `publicKey`
-    const keyPair = crypto.generateKeyPairSync('rsa', {
-        modulusLength: 4096, // bits - standard for RSA keys
+    const keyPair = crypto.generateKeyPairSync("rsa", {
+        modulusLength: 2048,
         publicKeyEncoding: {
-            type: 'pkcs1', // "Public Key Cryptography Standards 1"
-            format: 'pem' // Most common formatting choice
+            type: "spki",
+            format: "pem",
         },
         privateKeyEncoding: {
-            type: 'pkcs1', // "Public Key Cryptography Standards 1"
-            format: 'pem' // Most common formatting choice
-        }
+            type: "pkcs8",
+            format: "pem",
+        },
     });
 
-    // Create the public key file
-    fs.writeFileSync(__dirname + '/server/id_rsa_pub.pem', keyPair.publicKey);
+    await writeFile(path.join(__dirname, "id_rsa_pub.pem"), keyPair.publicKey);
+    await writeFile(path.join(__dirname, "id_rsa_priv.pem"), keyPair.privateKey);
 
-    // Create the private key file
-    fs.writeFileSync(__dirname + '/server/id_rsa_priv.pem', keyPair.privateKey);
-
+    console.log("Keys generated!");
 }
 
-// Generate the keypair
 genKeyPair();
