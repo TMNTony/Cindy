@@ -1,16 +1,11 @@
 import {createStore as _createStore} from 'vuex';
 import axios from "axios";
-import BlogService from "@/services/BlogService";
-import ProfileService
-    from "@/services/ProfileService";
-import PictureService
-    from "@/services/PictureService";
-import VideoService
-    from "@/services/VideoService";
 
-export function createStore() {
+export function createStore(currentToken, currentUser) {
     return _createStore({
         state: {
+            token: currentToken || '',
+            user: currentUser || {},
             gallery: [
                 {
                     id: 1,
@@ -111,29 +106,29 @@ export function createStore() {
             ],
 
         },
-        mutations: {},
+        mutations: {
+            SET_AUTH_TOKEN(state, token) {
+                state.token = token;
+                localStorage.setItem('token', token);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            },
+            SET_USER(state, user) {
+                state.user = user;
+                localStorage.setItem('user', JSON.stringify(user));
+            },
+            LOGOUT(state) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                state.token = '';
+                state.user = {};
+                axios.defaults.headers.common = {};
+            }
+        },
         getters: {
-            getPhotos(state) {
-                return state.gallery;
-            },
-            getVideos(state) {
-                return state.videos;
-            },
             getSchools(state) {
                 return state.schools;
             },
-            getPosts(state) {
-                return state.posts;
-            },
-            getServices(state) {
-                return state.services;
-            },
-            getExperiences(state) {
-                return state.experience;
-            }
+            isAuthenticated: (state) => !!state.token,
         },
-        actions: {
-
-        }
     });
 }

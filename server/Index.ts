@@ -2,11 +2,17 @@ import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from "body-parser";
+import passport from "passport";
+import path from "path";
+import passportConfig from './passport'
 import blogRouter from './routes/blogRoutes';
 import profileRouter from './routes/profileRoutes';
 import videoRouter from './routes/videoRoutes';
 import bellsRouter from './routes/bellsRoutes';
 import imageRouter from "./routes/imageRoutes"
+import userRoutes from "./routes/authRoutes"
+
+passportConfig(passport)
 
 const app: Express = express();
 
@@ -15,6 +21,8 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize())
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routes
 app.use(blogRouter);
@@ -22,6 +30,7 @@ app.use(profileRouter);
 app.use(videoRouter);
 app.use(bellsRouter);
 app.use(imageRouter)
+app.use(userRoutes)
 
 mongoose.connect('mongodb://localhost:27017/cindy')
     .then(() => console.log('Connected to MongoDB'))

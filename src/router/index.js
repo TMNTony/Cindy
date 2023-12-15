@@ -13,6 +13,7 @@ import Post from "../views/Post.vue";
 import UpdatePost from "../views/UpdatePost.vue";
 import AddVideo from "../components/AddVid.vue";
 import AddPic from "../components/AddPic.vue";
+import Login from "../views/Login.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -73,6 +74,14 @@ const routes = [
     path: '/AddPost',
     name: 'addPost',
     component: AddPost,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta: {
+      requiresAuth: false
+    }
   },
 ];
 

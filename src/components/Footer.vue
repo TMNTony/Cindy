@@ -4,6 +4,7 @@
       <p class="text-center font-body text-white md:text-left">
         © Copyright 2023. Cynthia Chambless
       </p>
+      <router-link to="login" class="text-center font-body text-white md:text-left">Admin</router-link>
     </div>
   </div>
 </template>

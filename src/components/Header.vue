@@ -178,10 +178,8 @@ export default {
         element.scrollIntoView({behavior: "smooth"});
       } else {
         this.$router.push({name: 'home'}).then(() => {
-          // Wait for the route change to complete, then scroll to "Contact"
           const element = document.getElementById(id);
           if (element) {
-            console.log(element)
             element.scrollIntoView({behavior: "smooth"});
           }
         })
