@@ -11,7 +11,7 @@
               allowfullscreen
           ></iframe>
         </div>
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center" v-if="isAuthenticated">
           <button @click="deleteVideo(video._id)"
                   class="mt-6 items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
           >Delete Video
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <AddVid/>
+    <AddVid v-if="isAuthenticated"/>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       videos: [],
-
+      isAuthenticated: this.$store.getters.isAuthenticated
     }
   },
   methods: {

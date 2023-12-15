@@ -14,6 +14,7 @@ import UpdatePost from "../views/UpdatePost.vue";
 import AddVideo from "../components/AddVid.vue";
 import AddPic from "../components/AddPic.vue";
 import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -79,6 +80,14 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
     meta: {
       requiresAuth: false
     }

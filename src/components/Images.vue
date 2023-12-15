@@ -11,7 +11,7 @@
           :alt=photo.caption
       />
       <div class="text-center font-header">{{ photo.caption }}</div>
-      <div class="flex items-center justify-center">
+      <div v-if="isAuthenticated" class="flex items-center justify-center">
         <button @click="deletePicture(photo._id)"
                 class="mt-6 items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
         >Delete Picture
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <AddPic/>
+  <AddPic v-if="isAuthenticated"/>
 </template>
 
 <script>
@@ -32,6 +32,7 @@ export default {
   components: {AddPic},
   data() {
     return {
+      isAuthenticated: this.$store.getters.isAuthenticated,
       createPic: false,
       gallery: [],
     }

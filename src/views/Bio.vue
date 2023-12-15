@@ -12,7 +12,7 @@
               Full Biography
             </h4>
             <p v-if="!editingBio" class="pt-6 font-body leading-relaxed text-grey-20" v-html="profile.bio"></p>
-            <button
+            <button v-if="isAuthenticated"
                 class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
                 @click="toggleEditingBio">{{ !editingBio ? "Edit Bio" : "Close Editor" }}
             </button>
@@ -33,7 +33,7 @@
               Student Achievements
             </h4>
             <p v-if="!editingAwards" class="pt-6 font-body leading-relaxed text-grey-20" v-html="profile.achievements"></p>
-            <button
+            <button v-if="isAuthenticated"
                 class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
                 @click="toggleEditingAwards">{{ !editingAwards ? "Edit Achievements" : "Close Editor" }}
             </button>
@@ -62,6 +62,7 @@ export default {
   name: 'bio',
   data() {
     return {
+      isAuthenticated: this.$store.getters.isAuthenticated,
       mobileMenu: false,
       editingBio: false,
       editingAwards: false,

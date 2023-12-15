@@ -14,7 +14,7 @@
         >
           I'm Cynthia Chambless, a Horn player and educator
         </h4>
-        <button
+        <button v-if="isAuthenticated"
             class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
             @click="toggleEditingAbout">{{ !editingAbout ? "Edit About" : "Close Editor" }}
         </button>
@@ -38,7 +38,7 @@
           My Mission Statement
         </h4>
 
-        <button
+        <button v-if="isAuthenticated"
             class="mt-6 mb-4 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
             @click="toggleEditingMission">{{ !editingMission ? "Edit Mission" : "Close Editor" }}
         </button>
@@ -73,6 +73,7 @@ import ProfileService from "@/services/ProfileService";
 export default {
   data() {
     return {
+      isAuthenticated: this.$store.getters.isAuthenticated,
       about: this.bio.about,
       mission: this.bio.philosophy,
       editingAbout: false,
