@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
 
   data() {
@@ -26,9 +27,9 @@ export default {
   methods: {
     logout(){
       this.$store.commit("LOGOUT");
-    }
+      this.isAuthenticated = false;
+    },
   }
-
 };
 </script>
 
