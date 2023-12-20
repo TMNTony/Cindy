@@ -33,14 +33,17 @@
             >Previous Post</span
             >
           </a>
-          <router-link :to="{name: 'updatePost', params: {id: post._id }}"
-              class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
-          >Edit Post
-          </router-link>
-          <button @click="deletePost()"
-                       class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
-          >Delete Post
-          </button>
+          <div v-if="isAuthenticated">
+            <router-link :to="{name: 'updatePost', params: {id: post._id }}"
+                         class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+            >Edit Post
+            </router-link>
+            <button @click="deletePost()"
+                    class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+            >Delete Post
+            </button>
+          </div>
+
           <a href="/" class="flex items-center">
         <span
             class="block pr-2 font-body text-lg font-bold uppercase text-primary md:pr-5"
@@ -79,6 +82,7 @@ import blogService from "../services/BlogService";
 export default {
   data() {
     return {
+      isAuthenticated: this.$store.getters.isAuthenticated,
       post: {
         title: "",
         description: "",

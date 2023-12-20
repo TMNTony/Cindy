@@ -50,7 +50,7 @@
             </div>
           </router-link>
         </div>
-        <router-link :to="{name: 'addPost'}"
+        <router-link v-if="isAuthenticated" :to="{name: 'addPost'}"
                      class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
         >Add Post
         </router-link>
@@ -66,6 +66,7 @@ import BlogService from "../services/BlogService";
 export default {
   data() {
     return {
+      isAuthenticated: this.$store.getters.isAuthenticated,
       posts: [],
     }
   },
