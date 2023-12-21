@@ -1,25 +1,25 @@
 <template>
   <LightGallery
+      class="flex flex-wrap items-center justify-center"
       :settings="{ plugins: plugins, dynamicEl: gallery }"
       :onInit="onInit"
   >
-    <div>
-
-    </div>
-    <a v-for="photo in gallery"
-       data-lg-size="1406-1390"
-       class="gallery-item"
-       :data-src='photo.imgSrc'
-       :data-sub-html=photo.caption
-    >
-      <img class="img-responsive custom-image" :src="photo.imgSrc" alt="" />
-      <div v-if="isAuthenticated" class="flex items-center justify-center mt-2">
-        <div @click="deletePicture(photo._id)"
-             class="delete-button rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
-          Delete Picture
+      <a v-for="photo in gallery"
+         data-lg-size="1406-1390"
+          class="gallery-item"
+          :data-src='photo.imgSrc'
+          :data-sub-html=photo.caption
+      >
+        <img class="img-responsive custom-image" :src="photo.imgSrc" alt="" />
+        <div v-if="isAuthenticated" class="flex items-center justify-center mt-4">
+          <div @click="deletePicture(photo._id)"
+               class="delete-button rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20 mb-4">
+            Delete Picture
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+
+
   </LightGallery>
   <AddPic v-if="isAuthenticated"/>
 </template>
@@ -106,8 +106,11 @@ export default {
 @import 'lightgallery/css/lightgallery.css';
 @import 'lightgallery/css/lg-thumbnail.css';
 @import 'lightgallery/css/lg-zoom.css';
+
+
 .custom-image {
   height: 240px;
   width: 240px;
+  margin: 1rem;
 }
 </style>

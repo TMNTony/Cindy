@@ -4,7 +4,7 @@ import * as path from 'path';
 import { PassportStatic } from 'passport';
 import {User, userModel} from './models/User'; // Adjust the import path based on your actual project structure
 
-const pathToKey: string = path.join(__dirname, '..', 'id_rsa_pub.pem');
+const pathToKey: string = path.join(__dirname, '../cryptography/', 'id_rsa_pub.pem');
 const PUB_KEY: string = fs.readFileSync(pathToKey, 'utf8');
 
 const options = {
@@ -13,21 +13,19 @@ const options = {
     algorithms: ['RS256']
 };
 
-export default (passport: PassportStatic) => {
-    passport.use(
-        new Strategy(options, (jwtPayload, done: VerifiedCallback) => {
-            console.log(jwtPayload);
+const strategy: Strategy = new Strategy(options, (jwtPayload, done: VerifiedCallback) => {
+    userModel.findOne({ _id: jwtPayload.sub }, (err: any, user: User) => {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            return done(null, user);
+        } else {
+            return done(null, false);
+        }
+    });
+})
 
-            userModel.findOne({ _id: jwtPayload.sub }, (err: any, user: User) => {
-                if (err) {
-                    return done(err, false);
-                }
-                if (user) {
-                    return done(null, user);
-                } else {
-                    return done(null, false);
-                }
-            });
-        })
-    );
+export default (passport: PassportStatic) => {
+    passport.use(strategy);
 };
