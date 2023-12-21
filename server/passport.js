@@ -27,26 +27,26 @@ const passport_jwt_1 = require("passport-jwt");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const User_1 = require("./models/User"); // Adjust the import path based on your actual project structure
-const pathToKey = path.join(__dirname, 'id_rsa_pub.pem');
+const pathToKey = path.join(__dirname, '../server/cryptography/', 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
 const options = {
     jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: PUB_KEY,
     algorithms: ['RS256']
 };
+const strategy = new passport_jwt_1.Strategy(options, (jwtPayload, done) => {
+    User_1.userModel.findOne({ _id: jwtPayload.sub }, (err, user) => {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            return done(null, user);
+        }
+        else {
+            return done(null, false);
+        }
+    });
+});
 exports.default = (passport) => {
-    passport.use(new passport_jwt_1.Strategy(options, (jwtPayload, done) => {
-        console.log(jwtPayload);
-        User_1.userModel.findOne({ _id: jwtPayload.sub }, (err, user) => {
-            if (err) {
-                return done(err, false);
-            }
-            if (user) {
-                return done(null, user);
-            }
-            else {
-                return done(null, false);
-            }
-        });
-    }));
+    passport.use(strategy);
 };
