@@ -17,7 +17,7 @@ const upload_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const saveImage = yield Image_1.imageModel.create({
             caption: req.body.caption,
             img: {
-                imgData: req.file.buffer,
+                imgData: req.file.buffer, // Use req.file.buffer for the image data
                 contentType: req.file.mimetype, // Use req.file.mimetype for the content type
             },
         });
@@ -61,7 +61,7 @@ const update_image = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const updatedImage = yield Image_1.imageModel.findByIdAndUpdate((id), {
             caption: req.body.caption,
             img: {
-                imgData: req.file.buffer,
+                imgData: req.file.buffer, // Use req.file.buffer for the image data
                 contentType: req.file.mimetype, // Use req.file.mimetype for the content type
             }
         }, { new: true } // Return the updated document
