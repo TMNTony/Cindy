@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
+import cors from 'cors'
 import bodyParser from "body-parser";
 import passport from "passport";
 import path from "path";
