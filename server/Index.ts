@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, {Express} from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
 import bodyParser from "body-parser";
@@ -17,8 +17,8 @@ passportConfig(passport)
 const app: Express = express();
 
 // Middleware
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 app.use(express.json());
 app.use(passport.initialize())
