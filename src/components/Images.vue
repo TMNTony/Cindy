@@ -12,14 +12,12 @@
       >
         <img class="img-responsive custom-image" :src="photo.imgSrc" alt="" />
         <div v-if="isAuthenticated" class="flex items-center justify-center mt-4">
-          <div @click="deletePicture(photo._id)"
+          <div @click.stop="deletePicture(photo._id)"
                class="delete-button rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20 mb-4">
             Delete Picture
           </div>
         </div>
       </a>
-
-
   </LightGallery>
   <AddPic v-if="isAuthenticated"/>
 </template>

@@ -4,7 +4,7 @@ import * as path from 'path';
 import { PassportStatic } from 'passport';
 import {User, userModel} from './models/User'; // Adjust the import path based on your actual project structure
 
-const pathToKey: string = path.join(__dirname, '../cryptography/', 'id_rsa_pub.pem');
+const pathToKey: string = path.join(__dirname, './', 'id_rsa_pub.pem');
 const PUB_KEY: string = fs.readFileSync(pathToKey, 'utf8');
 
 const options = {

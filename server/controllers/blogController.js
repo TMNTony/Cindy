@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const Blogs_1 = require("../models/Blogs");
-const get_blogs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const get_blogs = (res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const blogs = yield Blogs_1.blogModel.find({});
         if (blogs !== null) {
@@ -55,8 +55,7 @@ const update_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             description: req.body.description,
             date: req.body.date,
             content: req.body.content,
-        }, { new: true } // Return the updated document
-        );
+        }, { new: true });
         if (updatedBlog) {
             res.status(200).json(updatedBlog);
         }

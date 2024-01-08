@@ -27,7 +27,7 @@ const passport_jwt_1 = require("passport-jwt");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const User_1 = require("./models/User"); // Adjust the import path based on your actual project structure
-const pathToKey = path.join(__dirname, '../server/cryptography/', 'id_rsa_pub.pem');
+const pathToKey = path.join(__dirname, './', 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
 const options = {
     jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
