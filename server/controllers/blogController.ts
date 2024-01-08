@@ -1,7 +1,7 @@
 import {blogModel, Blog} from "../models/Blogs"
 import {Request, Response} from 'express';
 
-const get_blogs = async (res: Response): Promise<void> => {
+const get_blogs = async ( req: Request, res: Response): Promise<void> => {
     try {
         const blogs: Blog[] | null = await blogModel.find({});
         if (blogs !== null) {
