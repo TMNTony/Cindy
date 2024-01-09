@@ -37,7 +37,7 @@
           cols="30"
           rows="10"
       ></textarea>
-      <div ref="recaptcha" class="g-recaptcha" :data-sitekey="siteKey"></div>
+      <div class="g-recaptcha" :data-sitekey="siteKey"></div>
       <button
 
           class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
@@ -71,7 +71,6 @@ export default {
       const isVerified = await recaptchaService.verifyRecaptcha(token);
       if (isVerified) {
         this.sendEmail()
-        console.log("success")
       } else {
         console.log("not verified")
       }
