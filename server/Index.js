@@ -16,6 +16,7 @@ const videoRoutes_1 = __importDefault(require("./routes/videoRoutes"));
 const bellsRoutes_1 = __importDefault(require("./routes/bellsRoutes"));
 const imageRoutes_1 = __importDefault(require("./routes/imageRoutes"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const recaptchaAuth_1 = __importDefault(require("./recaptchaAuth"));
 (0, passport_2.default)(passport_1.default);
 const app = (0, express_1.default)();
 // Middleware
@@ -32,6 +33,7 @@ app.use(videoRoutes_1.default);
 app.use(bellsRoutes_1.default);
 app.use(imageRoutes_1.default);
 app.use(authRoutes_1.default);
+app.use(recaptchaAuth_1.default);
 mongoose_1.default.connect('mongodb://localhost:27017/cindy')
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Error connecting to MongoDB:', err.message));

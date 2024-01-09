@@ -15,7 +15,7 @@
         If you have any questions or would like to set up private lessons, shoot me a message!
       </p>
     </div>
-    <form ref="form" @submit.prevent="sendEmail" class="mx-auto w-full pt-10 sm:w-3/4">
+    <form ref="form" @submit.prevent="handleRecaptcha" class="mx-auto w-full pt-10 sm:w-3/4">
       <div class="flex flex-col md:flex-row">
         <input
             class="mr-3 w-full rounded 0 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
@@ -37,6 +37,7 @@
           cols="30"
           rows="10"
       ></textarea>
+      <div ref="recaptcha" class="g-recaptcha" :data-sitekey="siteKey"></div>
       <button
 
           class="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
@@ -54,9 +55,28 @@
 
 <script>
 import emailjs from '@emailjs/browser';
+import recaptchaService from "@/services/captchaService";
 
 export default {
+
+  data() {
+    return {
+      siteKey: "6Lc5f0opAAAAANCi4G_bBw5Tw9hYb6MT70iKiisL"
+    }
+  },
+
   methods: {
+    async handleRecaptcha() {
+      const token = grecaptcha.getResponse()
+      const isVerified = await recaptchaService.verifyRecaptcha(token);
+      if (isVerified) {
+        this.sendEmail()
+        console.log("success")
+      } else {
+        console.log("not verified")
+      }
+
+    },
     sendEmail() {
       emailjs.sendForm('service_cznazzg', 'template_76sirf7', this.$refs.form, 'u3oGwDX4m4dBODVe3')
           .then((result) => {
@@ -65,6 +85,13 @@ export default {
             console.log('FAILED...', error.text);
           });
     }
-  }
+  },
+  mounted() {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  },
 }
 </script>

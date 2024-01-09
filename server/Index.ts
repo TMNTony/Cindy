@@ -11,6 +11,7 @@ import videoRouter from './routes/videoRoutes';
 import bellsRouter from './routes/bellsRoutes';
 import imageRouter from "./routes/imageRoutes"
 import userRoutes from "./routes/authRoutes"
+import recaptcha from "./recaptchaAuth"
 
 passportConfig(passport)
 
@@ -31,6 +32,7 @@ app.use(videoRouter);
 app.use(bellsRouter);
 app.use(imageRouter)
 app.use(userRoutes)
+app.use(recaptcha)
 
 mongoose.connect('mongodb://localhost:27017/cindy')
     .then(() => console.log('Connected to MongoDB'))

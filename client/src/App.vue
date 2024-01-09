@@ -1,11 +1,10 @@
 <template>
   <div id="app" class="min-h-screen grid grid-rows-[auto,1fr,auto]">
     <AppHeader class="row-span-1"></AppHeader>
-    <router-view  />
+    <router-view/>
     <AppFooter class="row-span-3"></AppFooter>
   </div>
 </template>
-
 
 
 <script>
@@ -16,7 +15,7 @@ export default {
   components: {
     AppHeader,
     AppFooter
-  }
+  },
 }
 </script>
 <style>
