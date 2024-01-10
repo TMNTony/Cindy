@@ -34,7 +34,7 @@ app.use(bellsRoutes_1.default);
 app.use(imageRoutes_1.default);
 app.use(authRoutes_1.default);
 app.use(recaptchaAuth_1.default);
-mongoose_1.default.connect('mongodb://localhost:27017/cindy')
+mongoose_1.default.connect('mongodb+srv://carlsontony:rSRwe6VIZJz3HGJv@cindy.nk3qtnj.mongodb.net/test')
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Error connecting to MongoDB:', err.message));
 app.listen(3001, () => {

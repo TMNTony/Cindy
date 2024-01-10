@@ -34,7 +34,7 @@ app.use(imageRouter)
 app.use(userRoutes)
 app.use(recaptcha)
 
-mongoose.connect('mongodb://localhost:27017/cindy')
+mongoose.connect('mongodb+srv://carlsontony:rSRwe6VIZJz3HGJv@cindy.nk3qtnj.mongodb.net/test')
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Error connecting to MongoDB:', err.message));
 

@@ -10,7 +10,6 @@
 
       <div>
         <router-link v-if="!isAuthenticated" to="login" class="text-center font-body text-white md:text-left mr-4">Login</router-link>
-        <router-link to="register" class="text-center font-body text-white md:text-left mr-4">Register</router-link>
         <button v-if="isAuthenticated" @click="logout" class="text-center font-body text-white md:text-left ml-4">Logout</button>
       </div>
     </div>
