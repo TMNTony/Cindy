@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/pictures"
+const url = "https://server.chamblesshornstudio.com/pictures"
 export default {
     get_pictures(){
         return axios.get(url)

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/blogs"
+const url = "https://server.chamblesshornstudio.com/blogs"
 export default {
     get_blog(id) {
         return axios.get(url + `/${id}`)

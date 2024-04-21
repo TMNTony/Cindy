@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/videos"
+const url = "https://server.chamblesshornstudio.com/videos"
 
 export default {
     get_videos(){

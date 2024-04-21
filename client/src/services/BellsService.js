@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/bells"
+const url = "https://server.chamblesshornstudio.com/bells"
 
 export default {
     get_content(){

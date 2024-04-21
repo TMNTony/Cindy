@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/upload"
+const url = "https://server.chamblesshornstudio.com/upload"
 
 export default {
     get_images(){

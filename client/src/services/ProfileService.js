@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/profile"
+const url = "https://server.chamblesshornstudio.com/profile"
 export default {
     get_profile(){
         return axios.get(url)
